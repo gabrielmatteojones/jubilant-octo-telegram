@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{%- assign items = site[page.list] -%}
+<main id="main-container" class="main-container {{ page.theme | default: 'bluelectric' }}">
+{% include breadcrumb.html %}
+{% include hero.html theme=page.theme title=page.title subtitle=page.subtitle %}
+<section class="section bg-gray-light py-5"><div class="container">
+<div class="row variable-gutters">
+{%- for i in items %}
+<div class="col-lg-4 mb-3 mb-lg-4"><div class="card card-bg card-icon h-100 rounded"><a href="{{ i.url | relative_url }}"><div class="card-body">{% include icon.html id="svg-project" cls="svg-project" %}<div class="card-icon-content"><p><strong>{{ i.title }}</strong></p><small>{% if i.classi %}{{ i.classi }} · {% elsif i.materia %}{{ i.materia }} · {{ i.ordine }} · {% endif %}{{ i.descrizione | truncate: 90 }}</small></div></div></a></div></div>
+{%- endfor %}
+</div></div></section>
+</main>

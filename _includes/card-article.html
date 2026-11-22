@@ -1,0 +1,11 @@
+<article class="card card-bg card-article card-article-{{ include.theme | default: 'redbrown' }}" data-topics="{{ include.topics | join: '|' }}">
+<div class="card-body">
+<div class="card-article-img"{% if include.image %} style="background-image: url('{{ include.image | relative_url }}');"{% endif %}>
+{%- if include.date %}{% include date-badge.html date=include.date %}{% endif -%}
+{%- unless include.image %}<svg class="icon-{{ include.theme | default: 'redbrown' }} svg-{{ include.icon | default: 'newspaper' }}"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-{{ include.icon | default: 'newspaper' }}"></use></svg>{% endunless %}
+</div>
+<div class="card-article-content">
+<h2 class="h3"><a href="{{ include.url | relative_url }}">{{ include.title }}</a></h2>
+{%- if include.kicker %}<small class="h6 text-{{ include.theme | default: 'redbrown' }}">{{ include.kicker }}</small>{% endif %}
+<p>{{ include.text }}</p>
+</div></div></article>

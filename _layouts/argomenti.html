@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<main id="main-container" class="main-container petrol">
+{% include breadcrumb.html %}
+{% include hero.html theme="petrol" title=page.title subtitle=page.subtitle %}
+<section class="section bg-white py-5"><div class="container">
+<div class="row variable-gutters">
+{%- for t in site.data.topics %}
+<div class="col-lg-4 mb-3 mb-lg-4"><div class="card card-bg card-noicon rounded h-100"><a href="{{ '/cerca/' | relative_url }}?q={{ t.title | uri_escape }}"><div class="card-body"><div class="card-icon-content"><p><strong>{{ t.title }}</strong></p><small>{{ t.text }}</small></div></div></a></div></div>
+{%- endfor %}
+</div></div></section>
+</main>

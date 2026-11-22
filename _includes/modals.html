@@ -1,0 +1,175 @@
+<!-- Search Modal -->
+    <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+      aria-hidden="false">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content perfect-scrollbar">
+          <div class="modal-body">
+            <form action="{{ '/cerca/' | relative_url }}" method="get">
+              <div class="container">
+                <div class="row variable-gutters">
+                  <div class="col">
+                    <h2 class="h2" id="searchModal">
+                      Cerca
+                      <button type="button" class="close dismiss" data-dismiss="modal" aria-label="Chiudi">
+                        <svg class="svg-cancel-large" role="presentation">
+                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cancel-large"></use>
+                        </svg>
+                      </button>
+                    </h2>
+                    <div class="form-group search-form">
+
+                      <label for="search-input">Cerca servizi, notizie o documenti</label>
+                      <input data-element="search-modal-input" id="search-input" name="q" type="text" class="form-control"
+                        placeholder="Cerca servizi, notizie o documenti">
+                      <button type="button" class="clean-input" aria-label="Elimina testo di ricerca">
+                        <svg class="svg-cancel-large" role="presentation">
+                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cancel-large"></use>
+                        </svg>
+                      </button>
+                      <button type="submit" class="search-btn" aria-label="avvia la ricerca"
+                        data-element="search-submit">
+                        <svg class="svg-search">
+                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-search"></use>
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="cat-filters">
+                      <div class="custom-control custom-submit-redbrown">
+                        <button type="submit" class="custom-control-submit " id="scuola" name="type" value="school">
+                          Cerca nella sezione <strong class="text-uppercase text-small-bold">scuola</strong>
+                        </button>
+                      </div>
+                      <div class="custom-control custom-submit-greendark">
+                        <button type="submit" class="custom-control-submit " id="notizie" name="type" value="news">
+                          Cerca tra le <strong class="text-uppercase text-small-bold">novità</strong>
+                        </button>
+                      </div>
+                      <div class="custom-control custom-submit-purplelight">
+                        <button type="submit" class="custom-control-submit " id="servizi" name="type" value="service">
+                          Cerca nei <strong class="text-uppercase text-small-bold">servizi</strong>
+                        </button>
+                      </div>
+                      <div class="custom-control custom-submit-bluelectric">
+                        <button type="submit" class="custom-control-submit " id="didattica" name="type" value="education">
+                          Cerca nella <strong class="text-uppercase text-small-bold">didattica</strong>
+                        </button>
+                      </div>
+                      <div class="custom-control custom-submit-primary">
+                        <button type="submit" class="custom-control-submit " id="tutto" name="type" value="any">
+                          Cerca in <strong class="text-uppercase text-small-bold">tutto il sito</strong>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row variable-gutters">
+                  <div class="col-lg-5">
+                    <div class="searches-list-wrapper">
+                      <h3 class="h4">Ricerche frequenti</h3>
+                      <ul class="searches-list">
+{%- for s in site.data.search.frequenti %}
+<li><a href="{{ '/cerca/' | relative_url }}?q={{ s | uri_escape }}">{{ s }}</a></li>
+{%- endfor %}
+</ul><!-- /searches-list -->
+                    </div><!-- /searches-list-wrapper -->
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="badges-wrapper">
+                      <h3 class="h4">Tag</h3>
+                      <div class="badges">
+{%- for s in site.data.search.tag %}
+<a href="{{ '/cerca/' | relative_url }}?q={{ s | uri_escape }}" class="badge badge-sm badge-pill badge-outline-primary">{{ s }}</a>
+{%- endfor %}
+<a href="{{ '/argomenti/' | relative_url }}" aria-label="Visualizza tutti gli argomenti" title="Visualizza tutti gli argomenti" class="badge badge-sm badge-pill badge-outline-primary">...</a>
+</div><!-- /badges -->
+                    </div><!-- /badges-wrapper -->
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Search Modal -->
+
+    <!-- Access Modal -->
+    <div class="modal fade" id="access-modal" tabindex="-1" role="dialog" aria-labelledby="accessModal"
+      aria-hidden="false">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content perfect-scrollbar">
+          <div class="modal-body">
+            <form class="access-main-wrapper">
+              <div class="container">
+                <div class="row variable-gutters mb-0 mb-lg-4 mb-xl-5">
+                  <div class="col">
+                    <h2 class="d-inline" id="accessModal">
+                      Accedi ai servizi
+                    </h2>
+                    <button type="button" class="close dismiss" data-dismiss="modal" aria-label="Chiudi">
+                      <svg class="svg-cancel-large">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cancel-large"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="row variable-gutters justify-content-center pt-4 pt-xl-5">
+                  <div class="col-lg-4">
+                    <p class="text-intro">Da qui puoi accedere ai diversi servizi della scuola che richiedono
+                      un'autenticazione personale.</p>
+                    <div class="access-buttons">
+                      <a class="btn btn-petrol btn-block btn-lg rounded mb-3" href="#">Registro insegnanti</a>
+                      <a class="btn btn-petrol btn-block btn-lg rounded mb-3" href="#">Registro genitori</a>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 offset-lg-2 access-mobile-bg">
+                    <div class="access-login">
+                      <h3>Personale scolastico</h3>
+                      <p class="text-large">Entra nel sito della scuola con le tue credenziali per gestire contenuti,
+                        visualizzare circolari e altre funzionalità.</p>
+                      <div class="access-login-form">
+                        <div class="form-group">
+                          <label for="email">Email address</label>
+                          <input id="email" type="email" class="form-control" placeholder="La tua email">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label for="password">Password</label>
+                          <input id="password" type="password" class="form-control" placeholder="Password">
+                        </div>
+
+                        <div class="row variable-gutters mb-4">
+                          <div class="col text-right text-underline">
+                            <p><a href="#">Password dimenticata?</a></p>
+                          </div>
+                        </div>
+
+                        <div class="row variable-gutters">
+                          <div class="col-lg-6 mb-4">
+                            <div class="form-check form-check-inline">
+                              <input id="checkbox-reminder" type="checkbox">
+                              <label for="checkbox-reminder">Ricordami</label>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-4">
+                            <button type="submit" class="btn btn-white btn-block rounded" name="login"
+                              value="Accedi">Accedi</button>
+                          </div>
+                        </div>
+
+                        <div class="row variable-gutters">
+                          <div class="col text-center">
+                            <p>Non hai un account? <a href="#" class="text-underline">Iscriviti</a></p>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Access Modal -->

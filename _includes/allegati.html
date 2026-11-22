@@ -1,0 +1,11 @@
+<div class="row variable-gutters"><div class="col-lg-12">
+<div class="card-deck card-deck-spaced">
+{%- for a in include.list %}
+<div class="card card-bg card-icon rounded">
+<a href="{{ a.url | relative_url }}" target="_blank" rel="noopener">
+<div class="card-body">
+{% include icon.html id="it-pdf-document" cls="it-pdf-document" %}
+<div class="card-icon-content"><p><strong>{{ a.title }}</strong></p><small>{{ a.size }}</small></div>
+</div></a></div>
+{%- endfor %}
+</div></div></div>

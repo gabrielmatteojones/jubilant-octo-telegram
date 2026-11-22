@@ -1,46 +1,124 @@
-title: Gabriel Jones
-description: Animatore, studente di grafica, futuro maestro. Raccolta di giochi per animatori, educatori e psicologi.
+# ---------------------------------------------------------------
+#  Sito d'esempio - Istituto Comprensivo "Bruno Munari"
+#  Jekyll + modello "Design Scuole Italia" (design-scuole-pagine-statiche)
+#  Tutti i dati (scuola, persone, indirizzi, codici) sono FITTIZI.
+# ---------------------------------------------------------------
+
+title: "IC Bruno Munari"
+email: viic88200t@istruzione.it
+description: >-
+  Sito web dell'Istituto Comprensivo Statale "Bruno Munari" di Monteforte di Brenta (VI):
+  scuola dell'infanzia, primaria e secondaria di primo grado.
 lang: it
-# Cambia con il tuo indirizzo Netlify o dominio personale
-url: "https://beautiful-brigadeiros-bc3f46.netlify.app"
-baseurl: ""
 timezone: Europe/Rome
+
+# Se pubblichi su GitHub Pages in un repository di progetto (es. gj-on.github.io/bel)
+# lascia baseurl: "/bel" (senza slash finale). Per un dominio proprio usa baseurl: "".
+url: "https://gj-on.github.io"
+baseurl: "/bel"
+
+# Build settings
 markdown: kramdown
-permalink: /blog/:year/:month/:slug/
+kramdown:
+  input: GFM
+  auto_ids: true
+future: true          # mostra anche contenuti con data futura (eventi, circolari programmate)
+plugins: []
 
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-
-author:
-  name: Gabriel Jones
-
+# Collezioni (ogni cartella _nome contiene i contenuti di quel tipo)
 collections:
-  giochi:
+  notizie:
     output: true
-    permalink: /giochi/:name/
-  libri:
+    permalink: /novita/notizie/:name/
+  circolari:
     output: true
-    permalink: /libri/:name/
-  film:
+    permalink: /novita/circolari/:name/
+  eventi:
     output: true
-    permalink: /film-serie/:name/
+    permalink: /novita/calendario-eventi/:name/
+  persone:
+    output: true
+    permalink: /scuola/le-persone/:name/
+  luoghi:
+    output: true
+    permalink: /scuola/i-luoghi/:name/
+  strutture:
+    output: true
+    permalink: /scuola/organizzazione/:name/
+  documenti:
+    output: true
+    permalink: /scuola/le-carte-della-scuola/:name/
+  servizi:
+    output: true
+    permalink: /servizi/:name/
+  progetti:
+    output: true
+    permalink: /didattica/progetti/:name/
+  schede:
+    output: true
+    permalink: /didattica/schede-didattiche/:name/
 
+# Layout e briciole di pane di default per ogni collezione
 defaults:
-  - scope: { path: "", type: posts }
-    values: { layout: post }
-  - scope: { path: "", type: giochi }
-    values: { layout: scheda, tipo: gioco, sezione: giochi }
-  - scope: { path: "", type: libri }
-    values: { layout: scheda, tipo: libro, sezione: libri }
-  - scope: { path: "", type: film }
-    values: { layout: scheda, tipo: film, sezione: film }
+  - scope: {path: "", type: "notizie"}
+    values:
+      layout: notizia
+      breadcrumb: [{t: "Novità", u: "/novita/"}, {t: "Le notizie", u: "/novita/notizie/"}]
+  - scope: {path: "", type: "circolari"}
+    values:
+      layout: circolare
+      breadcrumb: [{t: "Novità", u: "/novita/"}, {t: "Le circolari", u: "/novita/circolari/"}]
+  - scope: {path: "", type: "eventi"}
+    values:
+      layout: scheda
+      theme: greendark
+      breadcrumb: [{t: "Novità", u: "/novita/"}, {t: "Calendario eventi", u: "/novita/calendario-eventi/"}]
+  - scope: {path: "", type: "persone"}
+    values:
+      layout: persona
+      breadcrumb: [{t: "Scuola", u: "/scuola/"}, {t: "Le persone", u: "/scuola/le-persone/"}]
+  - scope: {path: "", type: "luoghi"}
+    values:
+      layout: scheda
+      theme: redbrown
+      aside_title: "Dettagli del luogo"
+      breadcrumb: [{t: "Scuola", u: "/scuola/"}, {t: "I luoghi", u: "/scuola/i-luoghi/"}]
+  - scope: {path: "", type: "strutture"}
+    values:
+      layout: scheda
+      theme: redbrown
+      aside_title: "Dettagli della struttura"
+      breadcrumb: [{t: "Scuola", u: "/scuola/"}, {t: "Organizzazione", u: "/scuola/organizzazione/"}]
+  - scope: {path: "", type: "documenti"}
+    values:
+      layout: scheda
+      theme: redbrown
+      aside_title: "Dettagli del documento"
+      breadcrumb: [{t: "Scuola", u: "/scuola/"}, {t: "Le carte della scuola", u: "/scuola/le-carte-della-scuola/"}]
+  - scope: {path: "", type: "servizi"}
+    values:
+      layout: scheda
+      theme: purplelight
+      aside_title: "Dettagli del servizio"
+      breadcrumb: [{t: "Servizi", u: "/servizi/"}]
+  - scope: {path: "", type: "progetti"}
+    values:
+      layout: scheda
+      theme: bluelectric
+      aside_title: "Dettagli del progetto"
+      breadcrumb: [{t: "Didattica", u: "/didattica/"}, {t: "I progetti delle classi", u: "/didattica/progetti/"}]
+  - scope: {path: "", type: "schede"}
+    values:
+      layout: scheda
+      theme: bluelectric
+      aside_title: "Dettagli della scheda"
+      breadcrumb: [{t: "Didattica", u: "/didattica/"}, {t: "Le schede didattiche", u: "/didattica/schede-didattiche/"}]
 
 exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
-  - netlify.toml
+  - LICENSE
   - node_modules
   - vendor
+  - "*.py"

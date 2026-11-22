@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<main id="main-container" class="main-container petrol">
+{% include breadcrumb.html %}
+<section class="section bg-white py-2 py-lg-3 py-xl-5"><div class="container">
+<div class="row variable-gutters"><div class="col-lg-8 offset-lg-2">
+<h1 class="h2 mb-4">Risultati della ricerca</h1>
+<form action="{{ '/cerca/' | relative_url }}" method="get" class="mb-4" role="search">
+<div class="form-group search-form">
+<label for="q-page">Cerca servizi, notizie o documenti</label>
+<input id="q-page" name="q" type="text" class="form-control" placeholder="Cerca nel sito" data-search-input>
+</div>
+<button type="submit" class="btn btn-petrol">Cerca</button>
+</form>
+<p id="search-summary" class="mb-4" aria-live="polite"></p>
+<div id="search-results" data-index="{{ '/search.json' | relative_url }}"></div>
+<noscript><p>Per usare la ricerca è necessario abilitare JavaScript.</p></noscript>
+</div></div>
+</div></section>
+</main>

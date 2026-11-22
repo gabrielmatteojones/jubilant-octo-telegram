@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<main id="main-container" class="main-container purplelight">
+{% include breadcrumb.html %}
+{% include hero.html theme="purplelight" title=page.title subtitle=page.subtitle %}
+{%- for m in site.data.menu %}{% if m.id == "servizi" %}
+{%- for tipo in m.items %}
+{%- assign lista = site.servizi | where: "tipologia", tipo.title %}
+{%- assign mod = forloop.index | modulo: 2 %}
+<section class="section {% if mod == 1 %}bg-white{% else %}bg-gray-light{% endif %} py-5"><div class="container">
+<div class="title-section mb-5"><h2 class="h4">{{ tipo.title }}</h2></div>
+<div class="row variable-gutters">
+{%- for s in lista limit: 6 %}
+<div class="col-lg-4 mb-3 mb-lg-4">{% include card-service.html s=s %}</div>
+{%- endfor %}
+</div>
+<div class="pt-3 text-center"><a aria-label="vedi tutti i servizi: {{ tipo.title }}" class="text-underline" href="{{ tipo.url | relative_url }}"><strong>Vedi tutti</strong></a></div>
+</div></section>
+{%- endfor %}
+{%- endif %}{% endfor %}
+</main>

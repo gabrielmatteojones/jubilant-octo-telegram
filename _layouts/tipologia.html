@@ -1,0 +1,16 @@
+---
+layout: default
+---
+{%- assign lista = site.servizi | where: "tipologia", page.title -%}
+<main id="main-container" class="main-container purplelight">
+{% include breadcrumb.html %}
+{% include hero.html theme="purplelight" title=page.title subtitle=page.subtitle %}
+<section class="section bg-gray-light py-5"><div class="container">
+{%- if content != "" %}<div class="row variable-gutters mb-4"><div class="col-lg-8 wysiwig-text">{{ content }}</div></div>{% endif %}
+<div class="row variable-gutters">
+{%- for s in lista %}
+<div class="col-lg-4 mb-3 mb-lg-4">{% include card-service.html s=s %}</div>
+{%- endfor %}
+</div>
+</div></section>
+</main>

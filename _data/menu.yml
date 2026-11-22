@@ -1,0 +1,41 @@
+- id: scuola
+  title: Scuola
+  color: redbrown
+  url: /scuola/
+  data_element: school-submenu
+  items:
+    - {title: Presentazione, url: /scuola/presentazione/}
+    - {title: I luoghi, url: /scuola/i-luoghi/, data_element: school-locations}
+    - {title: Le carte della scuola, url: /scuola/le-carte-della-scuola/}
+    - {title: Organizzazione, url: /scuola/organizzazione/}
+    - {title: Le persone, url: /scuola/le-persone/}
+    - {title: I numeri della scuola, url: /scuola/i-numeri-della-scuola/}
+    - {title: La storia, url: /scuola/la-storia/}
+- id: servizi
+  title: Servizi
+  color: purplelight
+  url: /servizi/
+  data_element: services-submenu
+  items:
+    - {title: Personale scolastico, url: /servizi/personale-scolastico/, data_element: service-type}
+    - {title: Famiglie e studenti, url: /servizi/famiglie-e-studenti/, data_element: service-type}
+    - {title: Percorsi di studio, url: /servizi/percorsi-di-studio/}
+- id: novita
+  title: Novità
+  color: greendark
+  url: /novita/
+  data_element: news-submenu
+  items:
+    - {title: Le notizie, url: /novita/notizie/}
+    - {title: Le circolari, url: /novita/circolari/}
+    - {title: Calendario eventi, url: /novita/calendario-eventi/}
+    - {title: Albo online, url: /novita/albo-online/}
+- id: didattica
+  title: Didattica
+  color: bluelectric
+  url: /didattica/
+  data_element: teaching-submenu
+  items:
+    - {title: Offerta formativa, url: /didattica/offerta-formativa/}
+    - {title: Le schede didattiche, url: /didattica/schede-didattiche/}
+    - {title: I progetti delle classi, url: /didattica/progetti/}

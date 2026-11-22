@@ -1,0 +1,121 @@
+---
+layout: default
+---
+{%- assign notizie_ord = site.notizie | sort: "date" | reverse -%}
+{%- assign circolari_ord = site.circolari | sort: "date" | reverse -%}
+{%- assign eventi_ord = site.eventi | sort: "start" -%}
+{%- assign servizi_home = site.servizi | where: "home", true -%}
+<main id="main-container" class="main-container redbrown">
+<section class="section bg-redbrown section-hero-left">
+{% include deco-home.html %}
+<div class="container"><div class="row variable-gutters"><div class="col-md-6">
+<div class="hero-title">
+<div class="h4 text-white font-weight-normal">{{ site.data.school.comune }} ({{ site.data.school.provincia }})</div>
+<h1><span class="d-line d-xl-block">{{ site.data.school.tipo | replace: ' Statale', '' }}</span> {{ site.data.school.nome }}</h1>
+<a class="btn btn-sm btn-outline-white mt-4" href="{{ '/scuola/' | relative_url }}">Vai alla scuola</a>
+</div><!-- /hero-title -->
+</div></div></div>
+<div class="hero-img d-none d-md-block" style="background-image: url('{{ '/assets/img/gen/hero-home.jpg' | relative_url }}');"></div>
+</section>
+
+<section class="section bg-white py-2 py-lg-3 py-xl-5">
+<div class="container"><div class="row variable-gutters">
+<div class="col-lg-4">
+<div class="title-section pb-4"><h2>Notizie</h2></div>
+{%- for n in notizie_ord limit: 2 %}
+<div class="mb-4">{% include card-news.html n=n %}</div>
+{%- endfor %}
+<div class="py-2"><a aria-label="Leggi tutte le notizie" class="text-underline" href="{{ '/novita/notizie/' | relative_url }}"><strong>Leggi tutte</strong></a></div>
+</div>
+<div class="col-lg-4">
+<div class="title-section pb-4"><h2>Circolari</h2></div>
+{%- for c in circolari_ord limit: 3 %}
+<div class="mb-4">{% include card-circolare.html c=c %}</div>
+{%- endfor %}
+<div class="py-2"><a aria-label="Leggi tutte le circolari" class="text-underline" href="{{ '/novita/circolari/' | relative_url }}"><strong>Leggi tutte</strong></a></div>
+</div>
+<div class="col-lg-4">
+<div class="title-section pb-4"><h2>Prossimi eventi</h2></div>
+{%- assign oggi = site.time | date: "%Y-%m-%d" -%}
+{%- assign mostrati = 0 -%}
+{%- for e in eventi_ord %}
+{%- assign fine = e.end | default: e.start | date: "%Y-%m-%d" -%}
+{%- if fine >= oggi and mostrati < 3 %}
+<div class="mb-4">{% include card-event.html e=e %}</div>
+{%- assign mostrati = mostrati | plus: 1 -%}
+{%- endif %}
+{%- endfor %}
+<div class="py-2"><a aria-label="Vai al calendario eventi" class="text-underline" href="{{ '/novita/calendario-eventi/' | relative_url }}"><strong>Calendario eventi</strong></a></div>
+</div>
+</div></div>
+</section>
+
+<section class="section bg-white">
+<section class="section bg-purplegradient py-5 position-relative d-flex align-items-center overflow-hidden">
+{% include deco-purple.html %}
+<div class="container"><div class="row variable-gutters"><div class="col-md-5">
+<div class="title-section">
+<h2 class="pb-3">Servizi</h2>
+<p>I servizi offerti dall'Istituto Comprensivo "{{ site.data.school.nome }}" dedicati a famiglie, studenti, docenti e personale ATA</p>
+</div></div></div></div>
+</section>
+<div class="container position-relative slided-top">
+<div class="row variable-gutters mb-4 pb-3">
+{%- for s in servizi_home limit: 6 %}
+<div class="col-lg-4 mb-4">{% include card-service.html s=s %}</div>
+{%- endfor %}
+</div>
+<div class="pb-5 text-center"><a class="text-underline" href="{{ '/servizi/' | relative_url }}"><strong>Vedi tutti i servizi</strong></a></div>
+</div>
+</section>
+
+<section class="section section-padding py-0 bg-bluelectric section-tabs-bg">
+<div class="container"><div class="row variable-gutters"><div class="col">
+<div class="responsive-tabs-wrapper padding-top-200">
+<div class="title-large">
+<h2 class="h3 mb-0">La didattica</h2>
+<div class="h4 text-white label-didattica">la nostra offerta formativa</div>
+</div>
+<div class="title-small"><div class="h5">La scuola</div><p>A.S. {{ site.data.school.anno_scolastico }}</p></div>
+<div class="tabs-img"><img class="img-fluid" src="{{ '/assets/img/didattica-mockup.png' | relative_url }}" title="" alt=""></div>
+<div class="responsive-tabs responsive-tabs-aside padding-bottom-200">
+<ul><li><a href="#ordini-di-scuola">Istituto "{{ site.data.school.nome }}"</a></li></ul>
+<div id="ordini-di-scuola" class="responsive-tabs-content">
+<div class="accordion-large accordion-wrapper">
+{%- for o in site.data.ordini %}
+<hr />
+<div tabindex="0" class="accordion-large-title accordion-header"><h3>{{ o.title }}</h3></div>
+<div class="accordion-large-content accordion-content">
+<p>{{ o.text }}</p>
+<a href="{{ o.url | relative_url }}" class="btn btn-bluelectric mt-2 mb-4">Per saperne di più</a>
+</div>
+{%- endfor %}
+<hr />
+<div class="text-center text-sm-left mt-4"><a class="btn btn-redbrown btn-lg mt-4 mb-2" href="{{ '/scuola/presentazione/' | relative_url }}">Vai alla presentazione della scuola</a></div>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
+</section>
+
+<section class="section bg-white resource-section py-5">
+<div class="container"><div class="row variable-gutters">
+<div class="col-lg-4">
+<div class="h6 mb-3">Didattica</div>
+<h2 class="text-large mb-4 pr-4">Esplora le risorse didattiche dell'Istituto</h2>
+<a class="btn btn-sm btn-outline-bluelectric" href="{{ '/didattica/' | relative_url }}">Vai alla didattica</a>
+</div>
+<div class="col-lg-8"><div class="row variable-gutters pt-5">
+<div class="col-lg-6"><div class="card card-bg card-icon-main rounded mb-3"><a href="{{ '/didattica/progetti/' | relative_url }}"><div class="card-body">
+{% include icon.html id="svg-books" cls="icon-bluelectric svg-books" %}
+<div class="card-icon-content d-flex justify-content-center"><p class="mb-0"><strong>Progetti</strong></p></div>
+</div></a></div></div>
+<div class="col-lg-6"><div class="card card-bg card-icon-main rounded mb-3"><a href="{{ '/didattica/schede-didattiche/' | relative_url }}"><div class="card-body">
+{% include icon.html id="svg-timetable" cls="icon-bluelectric svg-timetable" %}
+<div class="card-icon-content d-flex justify-content-center"><p class="mb-0"><strong>Schede didattiche</strong></p></div>
+</div></a></div></div>
+</div></div>
+</div></div>
+</section>
+</main>

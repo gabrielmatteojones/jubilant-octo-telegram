@@ -1,0 +1,6 @@
+<div class="card card-bg card-icon h-100 rounded">
+<a href="{{ include.d.url | relative_url }}">
+<div class="card-body">
+{% include icon.html id="it-pdf-document" cls="it-pdf-document" %}
+<div class="card-icon-content"><p><strong>{{ include.d.title }}</strong></p><small>{{ include.d.descrizione | truncate: 110 }}</small></div>
+</div></a></div>

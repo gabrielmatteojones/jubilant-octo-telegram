@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<main id="main-container" class="main-container redbrown">
+{% include breadcrumb.html %}
+<section class="section bg-white py-2 py-lg-3 py-xl-5"><div class="container">
+<div class="row variable-gutters"><div class="col-lg-9">
+<h1 class="mb-5">{{ page.title }}</h1>
+<div class="row variable-gutters">
+{%- for m in site.data.menu %}
+<div class="col-md-6 mb-5">
+<h2 class="h4 text-{{ m.color }}"><a href="{{ m.url | relative_url }}">{{ m.title }}</a></h2>
+<ul class="link-list-wrapper pl-0" style="list-style:none">
+{%- for i in m.items %}<li class="mb-2"><a class="text-underline-hover" href="{{ i.url | relative_url }}">{{ i.title }}</a></li>{% endfor %}
+</ul>
+</div>
+{%- endfor %}
+<div class="col-md-6 mb-5">
+<h2 class="h4 text-petrol">Altre pagine</h2>
+<ul style="list-style:none" class="pl-0">
+<li class="mb-2"><a class="text-underline-hover" href="{{ '/argomenti/' | relative_url }}">Argomenti</a></li>
+<li class="mb-2"><a class="text-underline-hover" href="{{ '/cerca/' | relative_url }}">Cerca nel sito</a></li>
+{%- for l in site.data.links.footer %}<li class="mb-2"><a class="text-underline-hover" href="{{ l.url | relative_url }}">{{ l.title }}</a></li>{% endfor %}
+</ul>
+</div>
+</div>
+</div></div>
+</div></section>
+</main>

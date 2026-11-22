@@ -1,0 +1,24 @@
+---
+layout: default
+---
+{%- assign gruppi = site.luoghi | group_by: "categoria" -%}
+<main id="main-container" class="main-container redbrown">
+{% include breadcrumb.html %}
+{% include hero.html theme="redbrown" title=page.title subtitle=page.subtitle %}
+<section class="section bg-white section-map-wrapper">
+<div class="map-aside">
+{%- for g in gruppi %}
+<h2 class="h3">{{ g.name }}</h2>
+{%- for l in g.items %}
+<div class="card card-bg card-icon rounded mb-3">
+<a href="{{ l.url | relative_url }}" data-element="location-link" data-lat="{{ l.lat }}" data-lng="{{ l.lng }}" data-title="{{ l.title | escape }}" data-address="{{ l.indirizzo | escape }}">
+<div class="card-body">
+{% include icon.html id="svg-marker-simple" cls="svg-marker-simple" %}
+<div class="card-icon-content"><p><strong>{{ l.title }}</strong></p><small>{{ l.indirizzo }}</small></div>
+</div></a></div>
+{%- endfor %}
+{%- endfor %}
+</div>
+<div class="map-wrapper"><div id="school-map" style="width:100%;height:100%;min-height:420px" data-lat="{{ site.data.school.lat }}" data-lng="{{ site.data.school.lng }}" data-leaflet-images="{{ '/assets/js/components/leaflet/images/' | relative_url }}"></div></div>
+</section>
+</main>

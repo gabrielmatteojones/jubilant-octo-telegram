@@ -1,0 +1,18 @@
+---
+layout: default
+---
+{%- assign gruppi = site.documenti | group_by: "categoria" -%}
+<main id="main-container" class="main-container redbrown">
+{% include breadcrumb.html %}
+{% include hero.html theme="redbrown" title=page.title subtitle=page.subtitle %}
+{%- for g in gruppi %}
+{%- assign mod = forloop.index | modulo: 2 %}
+<section class="section {% if mod == 1 %}bg-white{% else %}bg-gray-light{% endif %} py-5"><div class="container">
+<div class="title-section mb-5"><h2 class="h4">{{ g.name }}</h2></div>
+<div class="row variable-gutters">
+{%- for d in g.items %}
+<div class="col-lg-4 mb-3 mb-lg-4">{% include card-doc.html d=d %}</div>
+{%- endfor %}
+</div></div></section>
+{%- endfor %}
+</main>

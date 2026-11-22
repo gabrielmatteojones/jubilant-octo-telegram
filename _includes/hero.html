@@ -1,0 +1,23 @@
+{%- assign th = include.theme | default: 'redbrown' -%}
+{%- if th == 'greendark' -%}
+<section class="section bg-greendark bg-greendarkgradient py-5 position-relative d-flex align-items-center overflow-hidden">
+{% include deco-green.html %}
+{%- elsif th == 'purplelight' -%}
+<section class="section bg-purplelight bg-purplegradient py-5 position-relative d-flex align-items-center overflow-hidden">
+{% include deco-purple.html %}
+{%- elsif th == 'bluelectric' -%}
+<section class="section bg-bluelectric bg-bluelectricgradient py-5 position-relative d-flex align-items-center overflow-hidden">
+{% include deco-petrol.html %}
+{%- elsif th == 'petrol' -%}
+<section class="section bg-petrol bg-petrolgradient py-5 position-relative d-flex align-items-center overflow-hidden">
+{% include deco-petrol.html %}
+{%- else -%}
+<section class="section bg-redbrown bg-red-gradient py-5 position-relative d-flex align-items-center overflow-hidden">
+{% include deco-red.html %}
+{%- endif %}
+<div class="container"><div class="row variable-gutters"><div class="col-md-5">
+<div class="hero-title text-left">
+<h1 class="p-0 mb-2">{{ include.title }}</h1>
+<p class="h4 font-weight-normal">{{ include.subtitle }}</p>
+</div></div></div></div>
+</section>

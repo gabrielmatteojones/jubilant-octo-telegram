@@ -1,0 +1,16 @@
+<ul class="link-list">
+{%- assign _parts = include.html | split: '<h2 id="' %}
+{%- for p in _parts offset: 1 %}
+{%- assign _h = p | split: '</h2>' | first | split: '">' %}
+<li><a class="list-item scroll-anchor-offset" href="#{{ _h[0] }}">{{ _h[1] }}</a></li>
+{%- endfor %}
+{%- if include.extra %}
+{%- assign _ex = include.extra | split: '|' %}
+{%- for e in _ex %}{% assign _p = e | split: ':' %}
+<li><a class="list-item scroll-anchor-offset" href="#{{ _p[0] }}">{{ _p[1] }}</a></li>
+{%- endfor %}
+{%- endif %}
+{%- if include.allegati %}
+<li><a class="list-item scroll-anchor-offset" href="#allegati">Documenti</a></li>
+{%- endif %}
+</ul>

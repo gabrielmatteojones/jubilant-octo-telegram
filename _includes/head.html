@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{%- assign pagedesc = page.description | default: page.excerpt | default: site.description | strip_html | strip | truncate: 160 %}
+<meta name="description" content="{{ pagedesc | escape }}">
+<meta name="author" content="{{ site.data.school.nome_completo }}">
+<meta name="generator" content="Jekyll">
+<meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+<meta property="og:description" content="{{ pagedesc | escape }}">
+<meta property="og:locale" content="it_IT">
+<title>{% if page.title and page.layout != 'home' %}{{ page.title | escape }} – {% endif %}{{ site.data.school.nome_completo }}</title>
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/bootstrap-italia.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/scuole.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/splide.min.css' | relative_url }}">
+{%- if page.map %}
+<link rel="stylesheet" href="{{ '/assets/js/components/leaflet/leaflet.css' | relative_url }}">
+{%- endif %}
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+<script src="{{ '/assets/js/modernizr.custom.js' | relative_url }}"></script>
+</head>

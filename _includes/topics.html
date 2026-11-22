@@ -1,0 +1,10 @@
+{%- if include.topics and include.topics.size > 0 %}
+<aside class="badges-wrapper badges-main">
+<h2 class="h4">Argomenti</h2>
+<div class="badges">
+{%- for t in include.topics %}
+<a href="{{ '/cerca/' | relative_url }}?q={{ t | uri_escape }}" data-element="topic-list" class="badge badge-sm badge-pill badge-outline-{{ include.theme | default: 'redbrown' }}">{{ t }}</a>
+{%- endfor %}
+</div>
+</aside>
+{%- endif %}

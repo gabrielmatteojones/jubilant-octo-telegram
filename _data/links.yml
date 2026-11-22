@@ -1,0 +1,14 @@
+esterni:
+  - {title: "Ministero dell'Istruzione e del Merito", url: "https://www.miur.gov.it/"}
+  - {title: "Ufficio Scolastico Regionale per il Veneto", url: "https://istruzioneveneto.gov.it/"}
+  - {title: "Ufficio Scolastico Territoriale di Vicenza", url: "https://istruzionevicenza.it/"}
+  - {title: "Scuola in Chiaro", url: "https://cercalatuascuola.istruzione.it/"}
+  - {title: "Iscrizioni On Line", url: "https://www.istruzione.it/iscrizionionline/"}
+  - {title: "Invalsi", url: "https://www.invalsi.it/"}
+  - {title: "Comune", url: "#"}
+footer:
+  - {title: "Note legali", url: /note-legali/, data_element: legal-notes}
+  - {title: "Amministrazione Trasparente", url: /amministrazione-trasparente/}
+  - {title: "Albo online", url: /novita/albo-online/}
+  - {title: "Privacy Policy", url: /privacy/, data_element: privacy-policy-link}
+  - {title: "Dichiarazione di accessibilità", url: /accessibilita/, data_element: accessibility-link}

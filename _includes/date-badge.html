@@ -1,0 +1,3 @@
+{%- assign _mesi = "gen,feb,mar,apr,mag,giu,lug,ago,set,ott,nov,dic" | split: "," -%}
+{%- assign _mi = include.date | date: "%-m" | minus: 1 -%}
+<div class="date"><span class="year">{{ include.date | date: "%Y" }}</span><span class="day">{{ include.date | date: "%d" }}</span><span class="month">{{ _mesi[_mi] }}</span></div>

@@ -1,0 +1,43 @@
+---
+layout: default
+---
+{%- assign items = site[page.list] -%}
+{%- if page.list == "eventi" -%}{%- assign items = items | sort: "start" -%}{%- else -%}{%- assign items = items | sort: "date" | reverse -%}{%- endif -%}
+{%- assign alltopics = items | map: "topics" | join: "," | split: "," | uniq | sort -%}
+<main id="main-container" class="main-container {{ page.theme }}">
+{% include breadcrumb.html %}
+{% include hero.html theme=page.theme title=page.title subtitle=page.subtitle %}
+<section class="section bg-gray-light">
+<div class="container">
+<div class="row variable-gutters sticky-sidebar-container">
+<div class="col-lg-3 bg-white bg-white-left">
+<aside class="aside-list sticky-sidebar search-results-filters pt-3">
+<div class="h6 mt-4"><strong>Argomenti</strong></div>
+<fieldset>
+<legend class="sr-only">Filtra per argomento</legend>
+{%- for t in alltopics %}
+<div class="form-check my-0">
+<input name="topic-filter" type="checkbox" id="topic-{{ forloop.index }}" value="{{ t }}" data-filter-topic>
+<label class="mb-0" for="topic-{{ forloop.index }}">{{ t }}</label>
+</div>
+{%- endfor %}
+</fieldset>
+</aside>
+</div>
+<div class="col-lg-7 offset-lg-1 pt84" id="archive-list">
+{%- for i in items %}
+{%- if page.list == "notizie" %}
+{% include card-article.html url=i.url title=i.title text=i.descrizione image=i.image date=i.date theme=page.theme topics=i.topics %}
+{%- elsif page.list == "circolari" %}
+{%- capture kick %}Circolare n. {{ i.numero }} · {{ i.destinatari }}{% endcapture %}
+{% include card-article.html url=i.url title=i.title text=i.descrizione date=i.date theme=page.theme topics=i.topics kicker=kick %}
+{%- else %}
+{% include card-article.html url=i.url title=i.title text=i.descrizione image=i.image date=i.start theme=page.theme topics=i.topics %}
+{%- endif %}
+{%- endfor %}
+<p class="mt-4" data-empty-message hidden>Nessun contenuto corrisponde ai filtri selezionati.</p>
+</div>
+</div>
+</div>
+</section>
+</main>

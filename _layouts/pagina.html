@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<main id="main-container" class="main-container petrol">
+{% include breadcrumb.html %}
+<section class="section bg-petrol py-3 py-lg-3 py-xl-5">
+<div class="container"><div class="row variable-gutters">
+<div class="col-12 col-sm-3 col-lg-3 d-none d-sm-block">
+<div class="section-thumb thumb-large mx-3"><img alt="{{ page.title }}" src="{{ page.thumb | default: '/assets/placeholders/logo-service.png' | relative_url }}"></div>
+</div>
+<div class="col-12 col-sm-9 col-md-8 col-lg-8 offset-lg-1 d-flex align-items-center">
+<div class="section-title">
+<h1 class="h2 mb-3">{{ page.title }}</h1>
+<p>{{ page.descrizione }}</p>
+</div></div>
+</div></div>
+</section>
+<section class="section bg-white">
+<div class="container container-border-top"><div class="row variable-gutters">
+<div class="col-lg-3 col-md-4 aside-border px-0">
+<aside class="aside-main aside-sticky">
+<div class="aside-title" id="people-detail"><a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi"><span>{{ page.aside_title | default: "Indice della pagina" }}</span>{% include icon.html id="svg-arrow-down-small" cls="icon-toggle svg-arrow-down-small" %}</a></div>
+<div id="lista-paragrafi" class="link-list-wrapper collapse show" role="region" aria-labelledby="people-detail">
+{% include aside-index.html html=content allegati=page.allegati %}
+</div>
+</aside>
+</div>
+<div class="col-lg-8 col-md-8 offset-lg-1 pt84">
+<article class="article-wrapper">
+<div class="row variable-gutters"><div class="col-lg-10 wysiwig-text">
+{% include body.html html=content %}
+
+</div></div>
+{%- if page.allegati %}
+<h2 class="h4 mb-4 mt-5" id="allegati">Documenti</h2>
+{% include allegati.html list=page.allegati %}
+{%- endif %}
+{% include article-footer.html %}
+</article>
+</div>
+</div></div>
+</section>
+</main>

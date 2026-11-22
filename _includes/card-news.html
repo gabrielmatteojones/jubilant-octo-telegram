@@ -1,0 +1,21 @@
+<div class="card card-bg card-vertical-thumb bg-white card-thumb-rounded">
+<div class="card-body">
+<div class="card-content{% if include.mh %} match-height{% endif %}">
+<h3 class="h5"><a href="{{ include.n.url | relative_url }}">{{ include.n.title }}</a></h3>
+<p>{{ include.n.descrizione | truncate: 150 }}</p>
+</div>
+{%- if include.n.image %}
+<div class="card-thumb"><img src="{{ include.n.image | relative_url }}" alt=""></div>
+{%- endif %}
+</div>
+{%- assign _a = site.persone | where: "pid", include.n.autore | first %}
+{%- if _a %}
+<div class="card-comments-wrapper">
+<div class="card-avatar-img"><img src="{{ _a.avatar | relative_url }}" alt="Immagine profilo"></div>
+<div class="card-avatar-content">
+<p class="font-weight-normal">da <a href="{{ _a.url | relative_url }}" aria-label="vai alla pagina {{ _a.title }}"><strong class="text-underline"><u>{{ _a.title }}</u></strong></a></p>
+<small>{{ _a.ruolo }}</small>
+</div>
+</div>
+{%- endif %}
+</div>

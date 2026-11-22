@@ -1,37 +1,45 @@
-# Sito di Gabriel Jones (Jekyll + Netlify CMS)
+# Sito d'esempio - IC "Bruno Munari"
 
-Sito statico in **Jekyll** con pannello di amministrazione **Netlify CMS (Decap)** su `/admin`.
+Sito Jekyll per un istituto comprensivo **fittizio**, costruito sul modello *Design Scuole Italia*
+(`design-scuole-pagine-statiche`) sopra la struttura Jekyll del tuo `template-master`.
+Tutti i nomi, gli indirizzi, i codici e i contenuti sono inventati.
 
-## Messa online (una volta sola)
-
-1. Crea un repository su GitHub e carica questa cartella (branch `main`).
-2. Su [app.netlify.com](https://app.netlify.com): **Add new site → Import from Git** e scegli il repository. Build command e cartella sono già in `netlify.toml`.
-3. Nel sito Netlify: **Site configuration → Identity → Enable Identity**.
-   - *Registration*: imposta **Invite only**.
-   - *Services → Git Gateway*: **Enable Git Gateway**.
-4. Identity → **Invite users** → invita la tua email, apri il link nella mail e scegli la password.
-5. Vai su `https://tuosito.netlify.app/admin/` e accedi.
-6. In `_config.yml` e `admin/config.yml` sostituisci `https://gabrieljones.netlify.app` con il tuo indirizzo vero.
-
-## Cosa modifichi dall'admin
-
-- **Giochi (anteprima)**, **Libri**, **Film e serie tv**, **Articoli del blog**
-- **Pagine e impostazioni**: testi della home, prezzo e link di pagamento, FAQ, social, progetti di grafica, pagina "Chi sono"
-
-Le voci già presenti sono **esempi**: sostituiscile o eliminale.
-
-## Vendita della raccolta
-
-In *Impostazioni → Servizio a pagamento* incolla un **link di pagamento** (Stripe Payment Link, Gumroad, PayPal...) e il prezzo. Finché il link è vuoto, il pulsante porta al modulo contatti.
-
-## Moduli
-
-Contatti e newsletter usano **Netlify Forms** (attivi dopo il primo deploy). Le risposte le vedi in Netlify → Forms.
-
-## Provarlo sul computer
+## Avvio in locale
 
 ```bash
 bundle install
-bundle exec jekyll serve        # http://localhost:4000
-npx decap-server                # in un altro terminale, poi apri /admin/
+bundle exec jekyll serve      # http://127.0.0.1:4000/bel/
 ```
+`baseurl` in `_config.yml` è `/bel` (come nel tuo template). Con un dominio proprio mettilo a `""`.
+
+## Struttura
+
+| Cartella | Contenuto |
+|---|---|
+| `_layouts/` | un layout per ogni tipo di pagina del modello (home, scuola, notizia, circolare, scheda, persona, archivio...) |
+| `_includes/` | header, footer, menu, card, breadcrumb (menu e footer sono generati da `_data/`) |
+| `_data/` | `school.yml` (dati scuola), `menu.yml`, `topics.yml`, `links.yml`, `storia.yml`, `numeri.yml`, `ordini.yml` |
+| `_notizie`, `_circolari`, `_eventi` | contenuti di Novità |
+| `_persone`, `_strutture`, `_luoghi`, `_documenti` | contenuti di Scuola |
+| `_servizi` | contenuti di Servizi |
+| `_progetti`, `_schede` | contenuti di Didattica |
+| `assets/` | CSS/JS/font del modello; `assets/img/gen` e `assets/avatars` sono immagini generate |
+| `search.json` + `assets/js/site.js` | ricerca interna lato browser |
+
+## Aggiungere contenuti
+Crea un file `.md` nella cartella della collezione, ad esempio `_notizie/mia-notizia.md`:
+
+```yaml
+---
+title: Titolo
+date: 2026-12-01
+autore: marchetto-elena     # pid di una persona in _persone
+descrizione: Riassunto breve
+image: /assets/img/gen/news-1.jpg
+topics: [Sport]
+---
+Testo in Markdown.
+```
+Nelle schede i titoli `## ...` generano automaticamente l'indice laterale.
+
+Per cambiare scuola modifica `_data/school.yml`, `_data/menu.yml` e i contenuti.

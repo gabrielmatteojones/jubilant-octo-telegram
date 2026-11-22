@@ -1,0 +1,20 @@
+<div class="row variable-gutters">
+<div class="col-lg-12 d-flex justify-content-end">
+<div class="actions-wrapper actions-main">
+<a class="toggle-actions" href="#" title="Vedi azioni" data-target="#modal-more-items" data-toggle="modal">
+{% include icon.html id="it-more-items" cls="it-more-items" %}
+<span>Stampa / Condividi</span></a>
+<div class="modal fade modal-actions" id="modal-more-items" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-body">
+<div class="link-list-wrapper"><ul class="link-list">
+<li><a href="javascript:window.print()" class="list-item left-icon" title="Stampa il contenuto">{% include icon.html id="it-print" cls="it-print" %}<span>Stampa</span></a></li>
+<li><a href="mailto:?subject={{ page.title | uri_escape }}&body={{ page.url | absolute_url | uri_escape }}" class="list-item left-icon" title="Invia il contenuto">{% include icon.html id="it-email" cls="it-email" %}<span>Invia</span></a></li>
+<li><a class="list-item collapsed link-toggle" role="button" title="Menu Condividi" href="#social-share" data-toggle="collapse" aria-expanded="false" aria-controls="social-share" id="share-control">{% include icon.html id="it-share" cls="it-share" %}<span>Condividi</span>{% include icon.html id="svg-arrow-down-small" cls="icon-toggle svg-arrow-down-small" %}</a>
+<ul class="link-sublist collapse" id="social-share" role="region" aria-labelledby="share-control">
+<li><a class="list-item" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | uri_escape }}" title="Condividi su: Facebook" target="_blank" rel="noopener">{% include icon.html id="it-social-facebook" cls="it-social-facebook" %}<span>Facebook</span></a></li>
+<li><a class="list-item" href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url | uri_escape }}" title="Condividi su: Twitter" target="_blank" rel="noopener">{% include icon.html id="it-social-twitter" cls="it-social-twitter" %}<span>Twitter</span></a></li>
+<li><a class="list-item" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | uri_escape }}" title="Condividi su: Linkedin" target="_blank" rel="noopener">{% include icon.html id="it-social-linkedin" cls="it-social-linkedin" %}<span>Linkedin</span></a></li>
+</ul></li>
+</ul></div>
+</div></div></div></div>
+</div></div></div>

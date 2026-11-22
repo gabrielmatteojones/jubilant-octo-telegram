@@ -1,0 +1,75 @@
+---
+layout: default
+---
+{%- assign autore = site.persone | where: "pid", page.autore | first -%}
+{%- assign correlate = site.notizie | sort: "date" | reverse -%}
+<main id="main-container" class="main-container greendark">
+{% include breadcrumb.html %}
+<section class="section bg-white article-title article-title-author">
+<div class="title-img" style="background-image: url('{{ page.image | default: '/assets/img/gen/news-1.jpg' | relative_url }}');"></div>
+<div class="container"><div class="row variable-gutters">
+<div class="col-md-6 article-title-author-container">
+<div class="title-content">
+<h1>{{ page.title }}</h1>
+<p class="mb-0">{{ page.descrizione }}</p>
+</div>
+{%- if autore %}
+<div class="card card-avatar card-comments"><div class="card-body p-0">
+<div class="card-avatar-img"><img src="{{ autore.avatar | relative_url }}" alt="Immagine profilo"></div>
+<div class="card-avatar-content">
+<p class="font-weight-normal">da <a href="{{ autore.url | relative_url }}"><strong class="text-underline"><u>{{ autore.title }}</u></strong></a></p>
+<small>{{ autore.ruolo }}</small>
+</div></div></div>
+{%- endif %}
+</div></div></div>
+</section>
+<section class="section bg-white pt-5">
+<div class="container"><div class="row variable-gutters">
+<div class="col-lg-9 col-md-8 order-lg-1">
+<article class="article-wrapper pt-4">
+<div class="row variable-gutters"><div class="col-lg-9 wysiwig-text">
+{% include body.html html=content %}
+</div></div>
+{%- if page.allegati %}
+<h2 class="h4 mb-4 mt-5" id="allegati">Documenti</h2>
+{% include allegati.html list=page.allegati %}
+{%- endif %}
+{% include article-footer.html %}
+</article>
+</div>
+<div class="col-lg-3 col-md-4 order-lg-0">
+<div class="actions-wrapper actions-main">
+<a class="toggle-actions" href="#" title="Vedi azioni" data-target="#modal-more-items" data-toggle="modal">{% include icon.html id="it-more-items" cls="it-more-items" %}<span>Stampa / Condividi</span></a>
+</div>
+{% include topics.html topics=page.topics theme="greendark" %}
+{%- if autore %}
+<div class="cards-aside mt-4">
+<h2 class="h4">Le persone</h2>
+<div class="card card-avatar card-comments"><a href="{{ autore.url | relative_url }}"><div class="card-body p-0">
+<div class="card-avatar-img"><img src="{{ autore.avatar | relative_url }}" alt="Immagine profilo"></div>
+<div class="card-avatar-content"><p class="font-weight-normal"><strong class="text-underline"><u>{{ autore.title }}</u></strong></p><small>{{ autore.ruolo }}</small></div>
+</div></a></div>
+</div>
+{%- endif %}
+</div>
+</div></div>
+</section>
+<div class="modal fade modal-actions" id="modal-more-items" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-body"><div class="link-list-wrapper"><ul class="link-list">
+<li><a href="javascript:window.print()" class="list-item left-icon" title="Stampa il contenuto">{% include icon.html id="it-print" cls="it-print" %}<span>Stampa</span></a></li>
+<li><a href="mailto:?subject={{ page.title | uri_escape }}&body={{ page.url | absolute_url | uri_escape }}" class="list-item left-icon" title="Invia il contenuto">{% include icon.html id="it-email" cls="it-email" %}<span>Invia</span></a></li>
+<li><a class="list-item" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | uri_escape }}" target="_blank" rel="noopener">{% include icon.html id="it-social-facebook" cls="it-social-facebook" %}<span>Condividi su Facebook</span></a></li>
+</ul></div></div></div></div></div>
+<section class="section bg-gray-gradient py-5">
+<div class="container pt-3"><div class="row variable-gutters"><div class="col-lg-12">
+<h2 class="h3 mb-5 text-center semi-bold text-gray-primary">Altre notizie</h2>
+<div class="it-carousel-wrapper carousel-notice it-carousel-landscape-abstract-three-cols splide" data-bs-carousel-splide>
+<div class="splide__track ps-lg-3 pe-lg-3"><ul class="splide__list it-carousel-all">
+{%- assign k = 0 -%}
+{%- for n in correlate %}{% if n.url != page.url and k < 5 %}
+<li class="splide__slide"><div class="it-single-slide-wrapper h-100">{% include card-news.html n=n %}</div></li>
+{%- assign k = k | plus: 1 -%}
+{%- endif %}{% endfor %}
+</ul></div></div>
+</div></div></div>
+</section>
+</main>

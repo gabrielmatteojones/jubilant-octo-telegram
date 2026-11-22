@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{%- assign strutture_ord = site.strutture | sort: "ordine" -%}
+<main id="main-container" class="main-container redbrown">
+{% include breadcrumb.html %}
+{% include hero.html theme="redbrown" title=page.title subtitle=page.subtitle %}
+<section class="section bg-gray-light py-5"><div class="container">
+{%- for st in strutture_ord %}
+{%- assign ppl = site.persone | where: "struttura", st.pid %}
+{%- if ppl.size > 0 %}
+<div class="title-section text-center mb-5 mt-4"><h2 class="h4"><a href="{{ st.url | relative_url }}">{{ st.title }}</a></h2></div>
+{%- assign resp = ppl | where: "gruppo", "Responsabili" %}
+{%- assign altri = ppl | where: "gruppo", "Persone" %}
+{%- if resp.size > 0 %}
+<div class="row variable-gutters mb-4">
+<div class="col-lg-3"><h3 class="text-lg-right mb-3 h4">Responsabili</h3></div>
+<div class="col-lg-9"><div class="row variable-gutters">
+{%- for p in resp %}<div class="col-lg-4">{% include card-person.html p=p %}</div>{% endfor %}
+</div></div></div>
+{%- endif %}
+{%- if altri.size > 0 %}
+<div class="row variable-gutters mb-4">
+<div class="col-lg-3"><h3 class="text-lg-right mb-3 h4">Persone</h3></div>
+<div class="col-lg-9"><div class="row variable-gutters">
+{%- for p in altri %}<div class="col-lg-4">{% include card-person.html p=p %}</div>{% endfor %}
+</div></div></div>
+{%- endif %}
+{%- endif %}
+{%- endfor %}
+</div></section>
+</main>

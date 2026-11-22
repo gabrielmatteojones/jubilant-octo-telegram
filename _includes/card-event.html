@@ -1,0 +1,11 @@
+<div class="card card-bg card-event bg-white card-thumb-rounded">
+<div class="card-body"><div class="card-content{% if include.mh %} match-height{% endif %}">
+<h4 class="h5"><a href="{{ include.e.url | relative_url }}">{{ include.e.title }}</a></h4>
+<p>{{ include.e.descrizione | truncate: 130 }}</p>
+</div></div>
+<div class="card-event-dates">
+<div class="card-event-dates-icon">{% include icon.html id="svg-calendar" cls="svg-calendar" %}</div>
+<div class="card-event-dates-content"><p class="font-weight-normal"><strong>
+{%- if include.e.end and include.e.end != include.e.start %}dal {% include data-it.html date=include.e.start %}<br />al {% include data-it.html date=include.e.end %}{% else %}{% include data-it.html date=include.e.start %}{% if include.e.ora %}<br />ore {{ include.e.ora }}{% endif %}{% endif -%}
+</strong></p></div>
+</div></div>

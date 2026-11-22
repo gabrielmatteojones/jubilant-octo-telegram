@@ -1,0 +1,12 @@
+<section class="section py-2 bg-white d-none d-sm-block">
+<div class="container"><div class="row variable-gutters"><div class="col-12">
+<div class="breadcrumb"><nav aria-label="breadcrumb">
+<ol class="breadcrumbs-list" data-element="breadcrumb">
+<li class="breadcrumb-item"><a href="{{ '/' | relative_url }}" title="Vai alla pagina: Home">Home</a></li>
+{%- for c in page.breadcrumb %}
+<li class="breadcrumb-item"><a href="{{ c.u | relative_url }}" title="Vai alla pagina: {{ c.t }}">{{ c.t }}</a></li>
+{%- endfor %}
+<li class="breadcrumb-item active" aria-current="page"><span>{{ page.title }}</span></li>
+</ol></nav></div>
+</div></div></div>
+</section>

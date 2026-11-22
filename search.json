@@ -1,15 +1,39 @@
 ---
 layout: null
 ---
-{%- assign statiche = site.pages | where: "in_search", true -%}
-{%- assign items = site.posts | concat: site.giochi | concat: site.libri | concat: site.film | concat: statiche -%}
 [
-{%- for p in items %}
-  {
-    "title": {{ p.title | jsonify }},
-    "url": {{ p.url | relative_url | jsonify }},
-    "type": {{ p.collection | default: "pagina" | jsonify }},
-    "text": {{ p.descrizione | default: p.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}
-  }{% unless forloop.last %},{% endunless %}
-{%- endfor %}
+{% for c in site.notizie %}
+{"title": {{ c.title | jsonify }}, "url": {{ c.url | relative_url | jsonify }}, "type": "news", "label": "Notizia", "desc": {{ c.descrizione | default: c.ruolo | jsonify }}, "topics": {{ c.topics | jsonify }}, "text": {{ c.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endfor %}
+{% for c in site.circolari %}
+{"title": {{ c.title | jsonify }}, "url": {{ c.url | relative_url | jsonify }}, "type": "news", "label": "Circolare", "desc": {{ c.descrizione | default: c.ruolo | jsonify }}, "topics": {{ c.topics | jsonify }}, "text": {{ c.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endfor %}
+{% for c in site.eventi %}
+{"title": {{ c.title | jsonify }}, "url": {{ c.url | relative_url | jsonify }}, "type": "news", "label": "Evento", "desc": {{ c.descrizione | default: c.ruolo | jsonify }}, "topics": {{ c.topics | jsonify }}, "text": {{ c.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endfor %}
+{% for c in site.luoghi %}
+{"title": {{ c.title | jsonify }}, "url": {{ c.url | relative_url | jsonify }}, "type": "school", "label": "Luogo", "desc": {{ c.descrizione | default: c.ruolo | jsonify }}, "topics": {{ c.topics | jsonify }}, "text": {{ c.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endfor %}
+{% for c in site.persone %}
+{"title": {{ c.title | jsonify }}, "url": {{ c.url | relative_url | jsonify }}, "type": "school", "label": "Persona", "desc": {{ c.descrizione | default: c.ruolo | jsonify }}, "topics": {{ c.topics | jsonify }}, "text": {{ c.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endfor %}
+{% for c in site.strutture %}
+{"title": {{ c.title | jsonify }}, "url": {{ c.url | relative_url | jsonify }}, "type": "school", "label": "Organizzazione", "desc": {{ c.descrizione | default: c.ruolo | jsonify }}, "topics": {{ c.topics | jsonify }}, "text": {{ c.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endfor %}
+{% for c in site.documenti %}
+{"title": {{ c.title | jsonify }}, "url": {{ c.url | relative_url | jsonify }}, "type": "school", "label": "Documento", "desc": {{ c.descrizione | default: c.ruolo | jsonify }}, "topics": {{ c.topics | jsonify }}, "text": {{ c.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endfor %}
+{% for c in site.servizi %}
+{"title": {{ c.title | jsonify }}, "url": {{ c.url | relative_url | jsonify }}, "type": "service", "label": "Servizio", "desc": {{ c.descrizione | default: c.ruolo | jsonify }}, "topics": {{ c.topics | jsonify }}, "text": {{ c.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endfor %}
+{% for c in site.progetti %}
+{"title": {{ c.title | jsonify }}, "url": {{ c.url | relative_url | jsonify }}, "type": "education", "label": "Progetto", "desc": {{ c.descrizione | default: c.ruolo | jsonify }}, "topics": {{ c.topics | jsonify }}, "text": {{ c.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endfor %}
+{% for c in site.schede %}
+{"title": {{ c.title | jsonify }}, "url": {{ c.url | relative_url | jsonify }}, "type": "education", "label": "Scheda didattica", "desc": {{ c.descrizione | default: c.ruolo | jsonify }}, "topics": {{ c.topics | jsonify }}, "text": {{ c.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endfor %}
+{% for p in site.pages %}{% if p.search %}
+{"title": {{ p.title | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "type": "school", "label": "Pagina", "desc": {{ p.descrizione | jsonify }}, "topics": {{ p.topics | jsonify }}, "text": {{ p.content | strip_html | strip_newlines | truncate: 700 | jsonify }}},
+{% endif %}{% endfor %}
+null
 ]

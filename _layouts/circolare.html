@@ -1,0 +1,48 @@
+---
+layout: default
+---
+{%- assign autore = site.persone | where: "pid", page.autore | first -%}
+<main id="main-container" class="main-container greendark">
+{% include breadcrumb.html %}
+<section class="section bg-white py-2 py-lg-3 py-xl-5">
+<div class="container"><div class="row variable-gutters">
+<div class="col-12 col-sm-3 col-lg-2 d-none d-sm-block"><div class="section-thumb mx-3"><img src="{{ '/assets/placeholders/logo-service.png' | relative_url }}" alt=""></div></div>
+<div class="col-12 col-sm-9 col-lg-5 col-md-8">
+<small class="h6 text-greendark">Circolare n. {{ page.numero }}</small>
+<div class="section-title">
+<h1 class="h2 mb-3">{{ page.title }}</h1>
+<div class="h4 text-greendark mb-3">{{ page.destinatari }}</div>
+<p>{{ page.descrizione }}</p>
+</div></div>
+{%- if autore %}
+<div class="col-lg-3 col-md-4 offset-lg-1">
+<div class="card card-avatar card-comments mt-3"><div class="card-body p-0">
+<div class="card-avatar-img"><img src="{{ autore.avatar | relative_url }}" alt="Immagine profilo"></div>
+<div class="card-avatar-content"><p class="font-weight-normal">da <a href="{{ autore.url | relative_url }}"><strong class="text-underline"><u>{{ autore.title }}</u></strong></a></p><small>{{ autore.ruolo }}</small></div>
+</div></div></div>
+{%- endif %}
+</div></div>
+</section>
+<section class="section bg-white">
+<div class="container container-border-top pt-4"><div class="row variable-gutters justify-content-center">
+<div class="col-lg-9 col-md-8 order-lg-1">
+<article class="article-wrapper pt-4">
+<div class="row variable-gutters"><div class="col-lg-9 wysiwig-text">
+{% include body.html html=content %}
+</div></div>
+{%- if page.allegati %}
+<h2 class="h4 mb-4 mt-5" id="allegati">Documenti</h2>
+{% include allegati.html list=page.allegati %}
+{%- endif %}
+{%- if page.presa_visione %}
+<div class="col-12 mt-4 px-0"><a href="mailto:{{ site.data.school.email }}?subject=Presa%20visione%20circolare%20{{ page.numero }}" role="button" class="btn btn-greendark">Presa visione</a></div>
+{%- endif %}
+<div class="mt-4">{% include article-footer.html %}</div>
+</article>
+</div>
+<div class="col-lg-3 col-md-4 order-lg-0">
+{% include topics.html topics=page.topics theme="greendark" %}
+</div>
+</div></div>
+</section>
+</main>

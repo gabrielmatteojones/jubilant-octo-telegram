@@ -1,0 +1,38 @@
+---
+layout: default
+---
+{%- assign notizie_ord = site.notizie | sort: "date" | reverse -%}
+{%- assign circolari_ord = site.circolari | sort: "date" | reverse -%}
+{%- assign eventi_ord = site.eventi | sort: "start" -%}
+<main id="main-container" class="main-container greendark">
+{% include breadcrumb.html %}
+{% include hero.html theme="greendark" title=page.title subtitle=page.subtitle %}
+<section class="section bg-gray-light py-5"><div class="container">
+<div class="title-section mb-5"><h2 class="h4">Notizie recenti</h2></div>
+<div class="it-carousel-wrapper carousel-notice it-carousel-landscape-abstract-three-cols splide" data-bs-carousel-splide><div class="splide__track"><ul class="splide__list">
+{%- for n in notizie_ord limit: 6 %}
+<li class="splide__slide"><div class="it-single-slide-wrapper h-100">{% include card-news.html n=n mh=true %}</div></li>
+{%- endfor %}
+</ul></div></div>
+<div class="pt-3 text-center"><a aria-label="vedi tutte le notizie" class="text-underline" href="{{ '/novita/notizie/' | relative_url }}"><strong>Vedi tutte</strong></a></div>
+</div></section>
+<section class="section bg-white py-5"><div class="container">
+<div class="title-section mb-5"><h3 class="h4">Circolari recenti</h3></div>
+<div class="it-carousel-wrapper carousel-notice it-carousel-landscape-abstract-three-cols splide" data-bs-carousel-splide><div class="splide__track"><ul class="splide__list">
+{%- for c in circolari_ord limit: 6 %}
+<li class="splide__slide"><div class="it-single-slide-wrapper h-100">{% include card-circolare.html c=c %}</div></li>
+{%- endfor %}
+</ul></div></div>
+<div class="pt-3 text-center"><a aria-label="vedi tutte le circolari" class="text-underline" href="{{ '/novita/circolari/' | relative_url }}"><strong>Vedi tutte</strong></a></div>
+</div></section>
+<section class="section bg-gray-light py-5"><div class="container">
+<div class="title-section mb-5"><h3 class="h4">Eventi in programma</h3></div>
+<div class="it-carousel-wrapper carousel-notice it-carousel-landscape-abstract-three-cols splide" data-bs-carousel-splide><div class="splide__track"><ul class="splide__list">
+{%- assign oggi = site.time | date: "%Y-%m-%d" -%}
+{%- for e in eventi_ord %}{% assign fine = e.end | default: e.start | date: "%Y-%m-%d" %}{% if fine >= oggi %}
+<li class="splide__slide"><div class="it-single-slide-wrapper h-100">{% include card-event.html e=e mh=true %}</div></li>
+{%- endif %}{% endfor %}
+</ul></div></div>
+<div class="pt-3 text-center"><a aria-label="vai al calendario" class="text-underline" href="{{ '/novita/calendario-eventi/' | relative_url }}"><strong>Calendario eventi</strong></a></div>
+</div></section>
+</main>

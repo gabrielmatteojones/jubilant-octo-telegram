@@ -1,0 +1,56 @@
+---
+layout: default
+---
+<main id="main-container" class="main-container petrol">
+{% include breadcrumb.html %}
+<section class="section bg-petrol py-3 py-lg-3 py-xl-5">
+<div class="container"><div class="row variable-gutters">
+<div class="col-12 col-sm-3 col-lg-3 d-none d-sm-block">
+<div class="section-thumb thumb-large mx-3"><img alt="{{ page.title }}" src="{{ page.avatar | relative_url }}"></div>
+</div>
+<div class="col-12 col-sm-9 col-md-8 col-lg-8 offset-lg-1 d-flex align-items-center">
+<div class="section-title">
+<h1 class="h2 mb-3">{{ page.title }}</h1>
+<p>{{ page.ruolo }}{% if page.struttura_nome %} · <strong>{{ page.struttura_nome }}</strong>{% endif %}</p>
+</div></div>
+</div></div>
+</section>
+<section class="section bg-white">
+<div class="container container-border-top"><div class="row variable-gutters">
+<div class="col-lg-3 col-md-4 aside-border px-0">
+<aside class="aside-main aside-sticky">
+<div class="aside-title" id="people-detail"><a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi"><span>Dettagli della persona</span>{% include icon.html id="svg-arrow-down-small" cls="icon-toggle svg-arrow-down-small" %}</a></div>
+<div id="lista-paragrafi" class="link-list-wrapper collapse show" role="region" aria-labelledby="people-detail">
+{% capture extra %}{% if page.materie %}insegnamenti:Insegnamenti|{% endif %}contatti:Contatti{% endcapture %}
+{% include aside-index.html html=content allegati=page.allegati extra=extra %}
+</div>
+</aside>
+</div>
+<div class="col-lg-8 col-md-8 offset-lg-1 pt84">
+<article class="article-wrapper">
+<div class="row variable-gutters"><div class="col-lg-10 wysiwig-text">
+{% include body.html html=content %}
+{%- if page.materie %}
+<h2 class="h4 mt-5" id="insegnamenti">Insegnamenti</h2>
+<div class="card-deck card-deck-spaced mb-4">
+{%- for m in page.materie %}
+<div class="card card-bg card-bg-simple rounded"><div class="card-body"><p>{{ m.materia }}</p><small>{{ m.classi }}</small></div></div>
+{%- endfor %}
+</div>
+{%- endif %}
+<h2 class="h4 mt-5" id="contatti">Contatti</h2>
+<div class="card-deck card-deck-spaced mb-4">
+<div class="card card-bg card-bg-simple rounded"><div class="card-body"><p>Email istituzionale</p><small><a href="mailto:{{ page.email }}">{{ page.email }}</a></small></div></div>
+{%- if page.ricevimento %}<div class="card card-bg card-bg-simple rounded"><div class="card-body"><p>Ricevimento</p><small>{{ page.ricevimento }}</small></div></div>{% endif %}
+</div>
+</div></div>
+{%- if page.allegati %}
+<h2 class="h4 mb-4 mt-5" id="allegati">Documenti</h2>
+{% include allegati.html list=page.allegati %}
+{%- endif %}
+{% include article-footer.html %}
+</article>
+</div>
+</div></div>
+</section>
+</main>

@@ -1,0 +1,33 @@
+---
+layout: default
+---
+{%- assign prog = site.progetti | sort: "date" | reverse -%}
+<main id="main-container" class="main-container bluelectric">
+{% include breadcrumb.html %}
+{% include hero.html theme="bluelectric" title=page.title subtitle=page.subtitle %}
+<section class="section bg-white py-5"><div class="container">
+<div class="title-section mb-5"><h2 class="h4">Offerta formativa</h2></div>
+<div class="row variable-gutters">
+{%- for o in site.data.ordini %}
+<div class="col-lg-4 mb-3 mb-lg-4"><div class="card card-bg card-noicon rounded h-100"><a href="{{ o.url | relative_url }}"><div class="card-body"><div class="card-icon-content"><p><strong>{{ o.title }}</strong></p><small>{{ o.text | truncate: 120 }}</small></div></div></a></div></div>
+{%- endfor %}
+</div></div></section>
+<section class="section bg-gray-light py-5"><div class="container">
+<div class="title-section mb-5"><h2 class="h4">I progetti delle classi</h2></div>
+<div class="row variable-gutters">
+{%- for p in prog limit: 3 %}
+<div class="col-lg-4 mb-3 mb-lg-4"><div class="card card-bg card-noicon rounded h-100"><a href="{{ p.url | relative_url }}"><div class="card-body"><div class="card-icon-content"><p><strong>{{ p.title }}</strong></p><small>{{ p.classi }} · {{ p.descrizione | truncate: 80 }}</small></div></div></a></div></div>
+{%- endfor %}
+</div>
+<div class="pt-3 text-center"><a class="text-underline" href="{{ '/didattica/progetti/' | relative_url }}"><strong>Vedi tutti</strong></a></div>
+</div></section>
+<section class="section bg-white py-5"><div class="container">
+<div class="title-section mb-5"><h2 class="h4">Le schede didattiche</h2></div>
+<div class="row variable-gutters">
+{%- for s in site.schede limit: 6 %}
+<div class="col-lg-4 mb-3 mb-lg-4"><div class="card card-bg card-icon h-100 rounded"><a href="{{ s.url | relative_url }}"><div class="card-body">{% include icon.html id="svg-doc-document" cls="svg-doc-document" %}<div class="card-icon-content"><p><strong>{{ s.title }}</strong></p><small>{{ s.materia }} · {{ s.ordine }}</small></div></div></a></div></div>
+{%- endfor %}
+</div>
+<div class="pt-3 text-center"><a class="text-underline" href="{{ '/didattica/schede-didattiche/' | relative_url }}"><strong>Vedi tutte</strong></a></div>
+</div></section>
+</main>

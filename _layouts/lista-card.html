@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<main id="main-container" class="main-container {{ page.theme | default: 'redbrown' }}">
+{% include breadcrumb.html %}
+{% include hero.html theme=page.theme title=page.title subtitle=page.subtitle %}
+<section class="section bg-gray-light"><div class="container">
+<div class="row variable-gutters justify-content-center pt-4"><div class="col-lg-7 py-5">
+{%- for i in page.items %}
+{% include card-article.html url=i.url title=i.title text=i.text image=i.image date=i.date theme=page.theme %}
+{%- endfor %}
+</div></div></div></section>
+</main>
