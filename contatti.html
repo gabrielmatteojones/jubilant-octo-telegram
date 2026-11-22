@@ -1,11 +1,12 @@
 ---
 layout: default
 title: Contatti
+colore: "#8ee36b"
 eyebrow: Scrivimi
 descrizione: "Una domanda sulla raccolta giochi, una collaborazione o un saluto: scrivimi qui."
 in_search: true
 ---
-{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=page.descrizione %}
+{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=page.descrizione colore=page.colore %}
 <section class="section">
   <div class="wrap">
     <form class="form" name="contatti" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="{{ '/grazie/' | relative_url }}">

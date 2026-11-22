@@ -1,50 +1,69 @@
-<div class="topbar">
-  <div class="wrap topbar__in">
-    <a class="topbar__skip" href="#main">Vai al contenuto</a>
-    <div class="topbar__r">
-      <button class="topbar__btn" id="fontToggle" type="button" aria-pressed="false">A+ Testo grande</button>
-      {% include social.html %}
+<div class="rainbow" aria-hidden="true"></div>
+<header class="gh" id="gh">
+  <div class="wrap gh__in">
+    <a class="gh__logo" href="{{ '/' | relative_url }}" aria-label="Gabriel Jones – Home">
+      <span class="gh__name">Gabriel<b>Jones</b></span>
+      <small>ANIMATORE<br>E FUTURO MAESTRO</small>
+    </a>
+
+    <nav class="gh__nav" aria-label="Menu principale">
+      <ul>
+        {% for item in site.data.navigation %}
+        <li class="gh__item{% if item.children %} has-sub{% endif %}">
+          {% if item.children %}
+            <button class="gh__link" type="button" aria-expanded="false">{{ item.title }}</button>
+            <ul class="gh__sub">
+              {% for c in item.children %}
+              <li><a href="{{ c.url | relative_url }}"{% if page.url == c.url %} aria-current="page"{% endif %}>{{ c.title }}</a></li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <a class="gh__link{% if page.url == item.url %} is-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="gh__r">
+      <a class="gh__signup" href="#iscriviti">ISCRIVITI</a>
+      <button class="gh__icon" id="searchBtn" type="button" aria-label="Cerca nel sito" aria-expanded="false" aria-controls="gsearch">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button class="gh__icon gh__burger" id="burger" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span>
+      </button>
     </div>
   </div>
-</div>
 
-<header class="brandbar">
-  <div class="wrap brandbar__in">
-    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Gabriel Jones – Home">
-      <span class="brand__mark" aria-hidden="true">GJ</span>
-      <span class="brand__txt">
-        <strong>{{ site.data.settings.nome }}</strong>
-        <small>{{ site.data.settings.ruoli }}</small>
-      </span>
-    </a>
-    <form class="search" role="search" onsubmit="return false">
-      <label class="sr" for="q">Cerca nel sito</label>
-      <input id="q" type="search" placeholder="Cerca nel sito" autocomplete="off">
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <ul id="results" class="search__results" hidden></ul>
-    </form>
+  <div class="gsearch" id="gsearch" hidden>
+    <div class="wrap">
+      <form role="search" onsubmit="return false">
+        <label class="sr" for="q">Cerca nel sito</label>
+        <input id="q" type="search" placeholder="Cerca giochi, libri, film, articoli…" autocomplete="off">
+        <ul id="results" class="search__results" hidden></ul>
+      </form>
+    </div>
   </div>
 </header>
 
-<nav class="nav" aria-label="Menu principale">
-  <div class="wrap nav__in">
-    <button class="nav__burger" type="button" aria-expanded="false" aria-controls="navlist">☰ Menu</button>
-    <ul class="nav__list" id="navlist">
+<div class="menu" id="menu" hidden>
+  <div class="wrap">
+    <ul class="menu__list">
       {% for item in site.data.navigation %}
-      <li class="nav__item{% if item.children %} has-sub{% endif %}">
+      <li>
         {% if item.children %}
-          <button class="nav__link" type="button" aria-expanded="false">{{ item.title }} <span class="chev" aria-hidden="true"></span></button>
-          <ul class="nav__sub">
-            {% for c in item.children %}
-            <li><a href="{{ c.url | relative_url }}"{% if page.url == c.url %} aria-current="page"{% endif %}>{{ c.title }}</a></li>
-            {% endfor %}
-          </ul>
+          <span class="menu__h">{{ item.title }}</span>
+          <ul>{% for c in item.children %}<li><a href="{{ c.url | relative_url }}">{{ c.title }}</a></li>{% endfor %}</ul>
         {% else %}
-          <a class="nav__link{% if page.url == item.url %} is-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+          <a class="menu__h" href="{{ item.url | relative_url }}">{{ item.title }}</a>
         {% endif %}
       </li>
       {% endfor %}
     </ul>
-    <a class="btn btn--accent nav__cta" href="{{ '/raccolta-giochi/' | relative_url }}">Raccolta giochi</a>
+    <div class="menu__foot">
+      <button class="menu__btn" id="fontToggle" type="button" aria-pressed="false">A+ Testo grande</button>
+      {% include social.html %}
+    </div>
   </div>
-</nav>
+</div>

@@ -1,7 +1,8 @@
 <footer class="footer">
+  <div class="rainbow" aria-hidden="true"></div>
   <div class="wrap">
     <div class="footer__top">
-      <div class="footer__logo">GABRIEL<br>JONES</div>
+      <div class="footer__logo">Gabriel<b>Jones</b><small>ANIMATORE<br>E FUTURO MAESTRO</small></div>
       {% include social.html %}
     </div>
     <div class="footer__mid">
@@ -21,7 +22,7 @@
           <li><a href="{{ '/grafica/' | relative_url }}">Grafica</a></li>
         </ul>
       </div>
-      <form class="newsletter" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="{{ '/grazie/' | relative_url }}">
+      <form class="newsletter" id="iscriviti" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="{{ '/grazie/' | relative_url }}">
         <input type="hidden" name="form-name" value="newsletter">
         <p class="sr"><label>Non compilare: <input name="bot-field"></label></p>
         <p class="newsletter__t">Ricevi i nuovi giochi e le novità via email</p>

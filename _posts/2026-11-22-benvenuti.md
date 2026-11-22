@@ -2,7 +2,6 @@
 title: Benvenuti nel mio sito
 descrizione: "Ecco chi sono e cosa troverai qui: giochi, educazione, libri, film e grafica."
 emoji: 👋
-colore: "#ffd6a5"
 ---
 Ciao, sono Gabriel. Questo è il mio nuovo spazio online.
 

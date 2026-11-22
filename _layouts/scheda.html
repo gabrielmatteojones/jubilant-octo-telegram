@@ -5,12 +5,15 @@ layout: default
 {% assign backlabel = 'Tutti i giochi' %}
 {% if page.tipo == 'libro' %}{% assign back = '/libri/' %}{% assign backlabel = 'Tutti i libri' %}{% endif %}
 {% if page.tipo == 'film' %}{% assign back = '/film-serie/' %}{% assign backlabel = 'Tutti i film e le serie' %}{% endif %}
+{% assign pal = "#ff6b6b,#ffd23f,#4cc9f0,#b388ff,#ff9f43,#2ec4b6,#ff8fb8,#8ee36b" | split: "," %}
+{% assign idx = page.title | size | modulo: 8 %}
+{% assign tint = page.colore | default: pal[idx] %}
 
-{% include pagehead.html eyebrow=page.categoria title=page.title sub=page.descrizione %}
+{% include pagehead.html eyebrow=page.categoria title=page.title sub=page.descrizione colore=tint %}
 <section class="section">
   <div class="wrap scheda">
-    <aside class="scheda__side">
-      <div class="card__media card__media--big" style="--tint: {{ page.colore | default: '#ffd166' }}">
+    <aside class="scheda__side" style="--tint: {{ tint }}">
+      <div class="card__media card__media--big">
         {% if page.immagine and page.immagine != "" %}
           <img src="{{ page.immagine | relative_url }}" alt="">
         {% else %}

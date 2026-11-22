@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Chi sono
+colore: "#ff8fb8"
 eyebrow: Gabriel Jones
 descrizione: Animatore, studente di grafica, futuro maestro. Amo libri, film e serie tv.
 in_search: true

@@ -6,31 +6,44 @@ in_search: false
 ---
 {% assign s = site.data.settings %}
 
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">{{ s.hero.eyebrow }}</p>
-    <h1>{{ s.hero.titolo }}</h1>
-    <p class="lead">{{ s.hero.sottotitolo }}</p>
-    <div class="hero__cta">
-      <a class="btn btn--accent" href="{{ '/raccolta-giochi/' | relative_url }}">Scopri la raccolta giochi</a>
-      <a class="btn btn--ghost" href="{{ '/chi-sono/' | relative_url }}">Chi sono</a>
+<!-- Copertina stile GatesNotes: illustrazione a sinistra, titolo serif a destra -->
+<section class="lead">
+  <div class="wrap lead__in">
+    <div class="lead__art"><img src="{{ '/assets/img/hero-art.svg' | relative_url }}" alt="Illustrazione colorata con dado, libri e matita"></div>
+    <div class="lead__txt">
+      <p class="kicker">Benvenuto</p>
+      <h1>{{ s.hero.titolo }}</h1>
+      <p class="lead__sub">{{ s.hero.sottotitolo }}</p>
+      <p class="by">Di <strong>{{ s.nome }}</strong> <i>|</i> {{ s.hero.eyebrow }}</p>
+      <div class="lead__cta">
+        <a class="btn btn--accent" href="{{ '/raccolta-giochi/' | relative_url }}">Scopri la raccolta giochi</a>
+        <a class="btn btn--line" href="{{ '/chi-sono/' | relative_url }}">Chi sono</a>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="wrap">
-  <p class="crumbs">Gabriel Jones ▸ Il servizio ▸ {{ s.servizio.nome }}</p>
-</div>
+<!-- Esplora: quattro riquadri colorati -->
+<section class="section" style="padding-top:8px">
+  <div class="wrap">
+    <div class="grid grid--4">
+      <a class="topic" style="--tint:#ff6b6b" href="{{ '/giochi/' | relative_url }}"><span class="topic__e">🎲</span><span class="topic__k">Il servizio</span><span class="topic__t">Giochi per animatori ed educatori</span></a>
+      <a class="topic" style="--tint:#4cc9f0" href="{{ '/libri/' | relative_url }}"><span class="topic__e">📚</span><span class="topic__k">Passioni</span><span class="topic__t">Libri che amo</span></a>
+      <a class="topic" style="--tint:#b388ff" href="{{ '/film-serie/' | relative_url }}"><span class="topic__e">🎬</span><span class="topic__k">Passioni</span><span class="topic__t">Film e serie tv</span></a>
+      <a class="topic" style="--tint:#2ec4b6" href="{{ '/grafica/' | relative_url }}"><span class="topic__e">🎨</span><span class="topic__k">Studio</span><span class="topic__t">Grafica e progetti</span></a>
+    </div>
+  </div>
+</section>
 
 <!-- Il servizio -->
-<section class="section" style="padding-top:20px">
+<section class="section">
   <div class="wrap feature">
     <div class="feature__panel">
-      <h2>{{ s.servizio.nome | upcase }}</h2>
+      <h2>{{ s.servizio.nome }}</h2>
       <p>{{ s.servizio.slogan }}</p>
     </div>
     <div>
-      <p class="tag" style="margin-top:0">Servizio a pagamento</p>
+      <p class="kicker">Servizio a pagamento</p>
       <h3>Per chi lavora ogni giorno con gruppi, bambini e ragazzi.</h3>
       <ul class="checks">
         {% for x in s.servizio.per_chi %}<li>{{ x }}</li>{% endfor %}
@@ -42,67 +55,69 @@ in_search: false
 </section>
 
 <!-- Anteprima giochi -->
-{% assign giochi = site.giochi | sort: "date" | reverse %}
+{% assign giochi = site.giochi | sort: "title" %}
 {% if giochi.size > 0 %}
-<section class="section section--cream">
+<section class="section section--tint">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="sec-title">Dalla raccolta</h2>
+      <h2 class="sec-title" style="--sc:#ff6b6b">Dalla raccolta</h2>
       <a class="sec-more" href="{{ '/giochi/' | relative_url }}">Tutti i giochi →</a>
     </div>
     <div class="grid grid--4">
-      {% for g in giochi limit:4 %}{% include card.html item=g %}{% endfor %}
+      {% for g in giochi limit:4 %}{% include card.html item=g i=forloop.index0 %}{% endfor %}
     </div>
   </div>
 </section>
 {% endif %}
 
-<!-- Chi sono -->
-<section class="section">
-  <div class="wrap">
-    <div class="sec-head"><h2 class="sec-title">Chi sono</h2><a class="sec-more" href="{{ '/chi-sono/' | relative_url }}">Leggi di più →</a></div>
-    <div class="grid grid--4">
-      <div class="pillar"><div class="pillar__i">🎪</div><h3>Animatore</h3><p>Lavoro sul campo con gruppi di bambini e ragazzi: è da lì che nascono i giochi della raccolta.</p></div>
-      <div class="pillar"><div class="pillar__i">🍎</div><h3>Futuro maestro</h3><p>Un giorno vorrei diventare maestro. Ogni esperienza educativa è un passo in quella direzione.</p></div>
-      <div class="pillar"><div class="pillar__i">🎨</div><h3>Grafica</h3><p>Studio grafica: curo io stesso l'immagine di giochi, schede e materiali.</p></div>
-      <div class="pillar"><div class="pillar__i">📚</div><h3>Libri, film e serie</h3><p>Le storie sono la mia benzina: leggo, guardo, e ne tiro fuori idee.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- Blog (sezione scura stile Latest videos) -->
+<!-- Articoli (sezione scura stile "Latest videos") -->
 {% assign posts = site.posts | limit: 3 %}
 {% if posts.size > 0 %}
 <section class="section section--dark">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="sec-title">Ultimi articoli</h2>
+      <h2 class="sec-title" style="--sc:#ffd23f">Ultimi articoli</h2>
       <a class="sec-more" href="{{ '/blog/' | relative_url }}">Tutto il blog →</a>
     </div>
     <div class="grid grid--3">
-      {% for p in posts %}{% include card.html item=p %}{% endfor %}
+      {% for p in posts %}{% include card.html item=p i=forloop.index0 %}{% endfor %}
     </div>
   </div>
 </section>
 {% endif %}
 
-<!-- Liste lettura / visione -->
+<!-- Liste di lettura e visione -->
 <section class="section">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="sec-title">Liste di lettura</h2>
+      <h2 class="sec-title" style="--sc:#4cc9f0">Liste di lettura</h2>
       <a class="sec-more" href="{{ '/libri/' | relative_url }}">Tutti i libri →</a>
     </div>
     <div class="grid grid--4">
-      {% for b in site.libri limit:4 %}{% include card.html item=b %}{% endfor %}
+      {% for b in site.libri limit:4 %}{% include card.html item=b i=forloop.index0 %}{% endfor %}
     </div>
 
     <div class="sec-head" style="margin-top:64px">
-      <h2 class="sec-title">Film e serie tv</h2>
+      <h2 class="sec-title" style="--sc:#b388ff">Film e serie tv</h2>
       <a class="sec-more" href="{{ '/film-serie/' | relative_url }}">Tutti i titoli →</a>
     </div>
     <div class="grid grid--4">
-      {% for f in site.film limit:4 %}{% include card.html item=f %}{% endfor %}
+      {% for f in site.film limit:4 %}{% include card.html item=f i=forloop.index0 %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Chi sono (fascia colorata) -->
+<section class="about">
+  <div class="wrap about__in">
+    <div>
+      <p class="kicker">Chi sono</p>
+      <h2>Animatore oggi, maestro domani.</h2>
+      <p>Faccio l'animatore, studio grafica e un giorno vorrei diventare maestro. Amo libri, film e serie tv, e le storie che raccontano mi danno idee per i miei giochi.</p>
+      <a class="btn btn--accent" href="{{ '/chi-sono/' | relative_url }}">Leggi di più</a>
+    </div>
+    <div class="about__chips" aria-hidden="true">
+      <span style="--tint:#ff6b6b">🎪 Animatore</span><span style="--tint:#ffd23f">🍎 Futuro maestro</span><span style="--tint:#4cc9f0">🎨 Grafica</span><span style="--tint:#8ee36b">📚 Libri</span><span style="--tint:#b388ff">🎬 Film e serie</span><span style="--tint:#ff8fb8">🧩 Giochi</span>
     </div>
   </div>
 </section>

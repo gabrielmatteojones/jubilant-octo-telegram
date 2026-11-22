@@ -1,6 +1,6 @@
-<section class="pagehead">
+<section class="pagehead" style="--tint: {{ include.colore | default: '#ffd23f' }}">
   <div class="wrap pagehead__in">
-    {% if include.eyebrow %}<p class="eyebrow">{{ include.eyebrow }}</p>{% endif %}
+    {% if include.eyebrow %}<p class="pill">{{ include.eyebrow }}</p>{% endif %}
     <h1>{{ include.title }}</h1>
     {% if include.sub %}<p class="pagehead__sub">{{ include.sub }}</p>{% endif %}
   </div>

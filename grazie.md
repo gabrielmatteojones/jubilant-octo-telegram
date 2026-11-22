@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Grazie!
+colore: "#ffd23f"
 eyebrow: Messaggio inviato
 descrizione: Ho ricevuto la tua richiesta, ti rispondo appena possibile.
 permalink: /grazie/

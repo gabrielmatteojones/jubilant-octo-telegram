@@ -1,6 +1,7 @@
 ---
 layout: default
 title: La Raccolta Giochi
+colore: "#ffd23f"
 eyebrow: Servizio a pagamento
 descrizione: Una raccolta di giochi per animatori, educatori, psicologi e per chiunque lavori con gruppi.
 in_search: true
@@ -12,7 +13,7 @@ in_search: true
   {% capture buy %}{{ '/contatti/' | relative_url }}?oggetto=raccolta{% endcapture %}
 {% endif %}
 
-{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=sv.slogan %}
+{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=sv.slogan colore=page.colore %}
 
 <section class="section">
   <div class="wrap feature">
@@ -38,7 +39,7 @@ in_search: true
 <section class="section section--cream">
   <div class="wrap">
     <div class="sec-head"><h2 class="sec-title">Assaggia qualche gioco</h2><a class="sec-more" href="{{ '/giochi/' | relative_url }}">Anteprima completa →</a></div>
-    <div class="grid grid--4">{% for g in giochi limit:4 %}{% include card.html item=g %}{% endfor %}</div>
+    <div class="grid grid--4">{% for g in giochi limit:4 %}{% include card.html item=g i=forloop.index0 %}{% endfor %}</div>
   </div>
 </section>
 {% endif %}

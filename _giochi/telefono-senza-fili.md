@@ -3,7 +3,6 @@ title: Telefono senza fili
 descrizione: "Classico gioco di ascolto e passaparola. (Voce di esempio)"
 categoria: Ascolto
 emoji: 📞
-colore: "#a0e7e5"
 eta: 6–12 anni
 durata: 5–10 minuti
 giocatori: 6–25

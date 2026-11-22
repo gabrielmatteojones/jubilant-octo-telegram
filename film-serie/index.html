@@ -1,15 +1,16 @@
 ---
 layout: default
 title: Film e serie tv
+colore: "#b388ff"
 eyebrow: Passioni
 descrizione: Film e serie tv che amo, con qualche appunto personale.
 in_search: true
 ---
-{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=page.descrizione %}
+{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=page.descrizione colore=page.colore %}
 <section class="section">
   <div class="wrap">
     {% if site.film.size > 0 %}
-    <div class="grid grid--4">{% for f in site.film %}{% include card.html item=f %}{% endfor %}</div>
+    <div class="grid grid--4">{% for f in site.film %}{% include card.html item=f i=forloop.index0 %}{% endfor %}</div>
     {% else %}
     <div class="empty">Nessun titolo ancora. Aggiungili da <a href="{{ '/admin/' | relative_url }}">/admin</a>.</div>
     {% endif %}

@@ -3,7 +3,6 @@ title: Caccia al tesoro a squadre
 descrizione: "Gioco di squadra con indizi da risolvere. (Voce di esempio)"
 categoria: Squadra
 emoji: 🗺️
-colore: "#ffadad"
 eta: 7–16 anni
 durata: 40–60 minuti
 giocatori: 10–40

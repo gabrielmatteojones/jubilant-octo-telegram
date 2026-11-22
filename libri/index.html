@@ -1,15 +1,16 @@
 ---
 layout: default
 title: Libri
+colore: "#4cc9f0"
 eyebrow: Passioni
 descrizione: I libri che amo e che mi hanno dato idee, per il lavoro e non solo.
 in_search: true
 ---
-{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=page.descrizione %}
+{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=page.descrizione colore=page.colore %}
 <section class="section">
   <div class="wrap">
     {% if site.libri.size > 0 %}
-    <div class="grid grid--4">{% for b in site.libri %}{% include card.html item=b %}{% endfor %}</div>
+    <div class="grid grid--4">{% for b in site.libri %}{% include card.html item=b i=forloop.index0 %}{% endfor %}</div>
     {% else %}
     <div class="empty">Nessun libro ancora. Aggiungili da <a href="{{ '/admin/' | relative_url }}">/admin</a>.</div>
     {% endif %}

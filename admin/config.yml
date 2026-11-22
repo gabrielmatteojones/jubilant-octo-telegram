@@ -27,7 +27,7 @@ collections:
       - { label: Breve descrizione, name: descrizione, widget: text }
       - { label: Categoria, name: categoria, widget: string, required: false, hint: "Es. Cooperazione, Squadra, Ascolto" }
       - { label: Emoji, name: emoji, widget: string, default: "🎲", required: false }
-      - { label: Colore di sfondo, name: colore, widget: color, default: "#ffd166", required: false }
+      - { label: Colore di sfondo, name: colore, widget: color, required: false }
       - { label: Immagine, name: immagine, widget: image, required: false }
       - { label: Età, name: eta, widget: string, required: false }
       - { label: Durata, name: durata, widget: string, required: false }
@@ -68,7 +68,7 @@ collections:
       - { label: Breve descrizione, name: descrizione, widget: text }
       - { label: Copertina, name: immagine, widget: image, required: false }
       - { label: Emoji (se senza copertina), name: emoji, widget: string, default: "📖", required: false }
-      - { label: Colore di sfondo, name: colore, widget: color, default: "#cdb4db", required: false }
+      - { label: Colore di sfondo, name: colore, widget: color, required: false }
       - { label: Perché mi piace, name: body, widget: markdown }
 
   # ---------- Film e serie ----------
@@ -88,7 +88,7 @@ collections:
       - { label: Breve descrizione, name: descrizione, widget: text }
       - { label: Locandina, name: immagine, widget: image, required: false }
       - { label: Emoji (se senza locandina), name: emoji, widget: string, default: "🎬", required: false }
-      - { label: Colore di sfondo, name: colore, widget: color, default: "#98c1d9", required: false }
+      - { label: Colore di sfondo, name: colore, widget: color, required: false }
       - { label: Perché mi piace, name: body, widget: markdown }
 
   # ---------- Pagine e impostazioni ----------
@@ -155,6 +155,7 @@ collections:
         file: chi-sono.md
         fields:
           - { label: Layout, name: layout, widget: hidden, default: page }
+          - { label: Colore pagina, name: colore, widget: hidden, default: "#ff8fb8" }
           - { label: Titolo, name: title, widget: string }
           - { label: Riga sopra il titolo, name: eyebrow, widget: string, required: false }
           - { label: Sottotitolo, name: descrizione, widget: text, required: false }

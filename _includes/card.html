@@ -1,6 +1,10 @@
 {% assign it = include.item %}
-<a class="card" href="{{ it.url | relative_url }}">
-  <div class="card__media" style="--tint: {{ it.colore | default: '#ffd166' }}">
+{% assign pal = "#ff6b6b,#ffd23f,#4cc9f0,#b388ff,#ff9f43,#2ec4b6,#ff8fb8,#8ee36b" | split: "," %}
+{% assign off = include.i | default: 0 %}
+{% assign idx = it.title | size | plus: off | modulo: 8 %}
+{% assign tint = it.colore | default: pal[idx] %}
+<a class="card" href="{{ it.url | relative_url }}" style="--tint: {{ tint }}">
+  <div class="card__media">
     {% if it.immagine and it.immagine != "" %}
       <img src="{{ it.immagine | relative_url }}" alt="" loading="lazy">
     {% else %}

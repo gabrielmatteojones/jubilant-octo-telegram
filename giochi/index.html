@@ -1,16 +1,17 @@
 ---
 layout: default
 title: Anteprima giochi
+colore: "#ff6b6b"
 eyebrow: La raccolta
 descrizione: Alcuni giochi della raccolta, per capire lo stile prima di acquistare.
 in_search: true
 ---
-{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=page.descrizione %}
+{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=page.descrizione colore=page.colore %}
 <section class="section">
   <div class="wrap">
     {% assign giochi = site.giochi | sort: "title" %}
     {% if giochi.size > 0 %}
-    <div class="grid grid--4">{% for g in giochi %}{% include card.html item=g %}{% endfor %}</div>
+    <div class="grid grid--4">{% for g in giochi %}{% include card.html item=g i=forloop.index0 %}{% endfor %}</div>
     {% else %}
     <div class="empty">Nessun gioco ancora. Aggiungine dal pannello <a href="{{ '/admin/' | relative_url }}">/admin</a>.</div>
     {% endif %}
