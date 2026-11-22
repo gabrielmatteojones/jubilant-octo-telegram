@@ -1,0 +1,162 @@
+backend:
+  name: git-gateway
+  branch: main   # cambia in "master" se il tuo repository usa quel nome
+
+# Per provare l'admin in locale: npx decap-server  +  bundle exec jekyll serve
+local_backend: true
+
+locale: it
+site_url: https://gabrieljones.netlify.app
+display_url: https://gabrieljones.netlify.app
+publish_mode: simple
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  # ---------- Raccolta giochi ----------
+  - name: giochi
+    label: Giochi (anteprima)
+    label_singular: Gioco
+    folder: _giochi
+    create: true
+    extension: md
+    slug: "{{slug}}"
+    summary: "{{title}} · {{categoria}}"
+    fields:
+      - { label: Titolo, name: title, widget: string }
+      - { label: Breve descrizione, name: descrizione, widget: text }
+      - { label: Categoria, name: categoria, widget: string, required: false, hint: "Es. Cooperazione, Squadra, Ascolto" }
+      - { label: Emoji, name: emoji, widget: string, default: "🎲", required: false }
+      - { label: Colore di sfondo, name: colore, widget: color, default: "#ffd166", required: false }
+      - { label: Immagine, name: immagine, widget: image, required: false }
+      - { label: Età, name: eta, widget: string, required: false }
+      - { label: Durata, name: durata, widget: string, required: false }
+      - { label: Partecipanti, name: giocatori, widget: string, required: false }
+      - { label: Spiegazione, name: body, widget: markdown }
+
+  # ---------- Blog ----------
+  - name: blog
+    label: Articoli del blog
+    label_singular: Articolo
+    folder: _posts
+    create: true
+    extension: md
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} ({{date}})"
+    sortable_fields: [date, title]
+    fields:
+      - { label: Titolo, name: title, widget: string }
+      - { label: Data, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: Sottotitolo / riassunto, name: descrizione, widget: text, required: false }
+      - { label: Immagine, name: immagine, widget: image, required: false }
+      - { label: Emoji (se senza immagine), name: emoji, widget: string, required: false }
+      - { label: Colore di sfondo, name: colore, widget: color, required: false }
+      - { label: Testo, name: body, widget: markdown }
+
+  # ---------- Libri ----------
+  - name: libri
+    label: Libri
+    label_singular: Libro
+    folder: _libri
+    create: true
+    extension: md
+    slug: "{{slug}}"
+    fields:
+      - { label: Titolo, name: title, widget: string }
+      - { label: Autore, name: autore, widget: string, required: false }
+      - { label: Genere, name: categoria, widget: string, required: false }
+      - { label: Breve descrizione, name: descrizione, widget: text }
+      - { label: Copertina, name: immagine, widget: image, required: false }
+      - { label: Emoji (se senza copertina), name: emoji, widget: string, default: "📖", required: false }
+      - { label: Colore di sfondo, name: colore, widget: color, default: "#cdb4db", required: false }
+      - { label: Perché mi piace, name: body, widget: markdown }
+
+  # ---------- Film e serie ----------
+  - name: film
+    label: Film e serie tv
+    label_singular: Titolo
+    folder: _film
+    create: true
+    extension: md
+    slug: "{{slug}}"
+    fields:
+      - { label: Titolo, name: title, widget: string }
+      - { label: Formato, name: formato, widget: select, options: ["Film", "Serie tv"], default: "Film" }
+      - { label: Categoria (mostrata sulla card), name: categoria, widget: string, required: false }
+      - { label: Regia / ideatore, name: regista, widget: string, required: false }
+      - { label: Anno, name: anno, widget: string, required: false }
+      - { label: Breve descrizione, name: descrizione, widget: text }
+      - { label: Locandina, name: immagine, widget: image, required: false }
+      - { label: Emoji (se senza locandina), name: emoji, widget: string, default: "🎬", required: false }
+      - { label: Colore di sfondo, name: colore, widget: color, default: "#98c1d9", required: false }
+      - { label: Perché mi piace, name: body, widget: markdown }
+
+  # ---------- Pagine e impostazioni ----------
+  - name: impostazioni
+    label: Pagine e impostazioni
+    files:
+      - label: Impostazioni sito e servizio
+        name: settings
+        file: _data/settings.yml
+        fields:
+          - { label: Nome, name: nome, widget: string }
+          - { label: Ruoli (sotto il nome), name: ruoli, widget: string }
+          - { label: Email di contatto, name: email, widget: string, required: false }
+          - label: Home – copertina
+            name: hero
+            widget: object
+            fields:
+              - { label: Riga sopra il titolo, name: eyebrow, widget: string }
+              - { label: Titolo, name: titolo, widget: string }
+              - { label: Sottotitolo, name: sottotitolo, widget: text }
+          - label: Servizio a pagamento
+            name: servizio
+            widget: object
+            fields:
+              - { label: Nome, name: nome, widget: string }
+              - { label: Slogan, name: slogan, widget: text }
+              - { label: Prezzo (es. "€ 19"), name: prezzo, widget: string, required: false }
+              - { label: Link di pagamento (Stripe, Gumroad, PayPal...), name: checkout_url, widget: string, required: false }
+              - { label: Descrizione, name: descrizione, widget: text }
+              - { label: Per chi è, name: per_chi, widget: list, field: { label: Voce, name: voce, widget: string } }
+              - { label: Cosa include, name: include, widget: list, field: { label: Voce, name: voce, widget: string } }
+              - label: Domande frequenti
+                name: faq
+                widget: list
+                fields:
+                  - { label: Domanda, name: domanda, widget: string }
+                  - { label: Risposta, name: risposta, widget: text }
+          - label: Social (link completi, lascia vuoto per nascondere)
+            name: social
+            widget: object
+            fields:
+              - { label: Instagram, name: instagram, widget: string, required: false }
+              - { label: YouTube, name: youtube, widget: string, required: false }
+              - { label: TikTok, name: tiktok, widget: string, required: false }
+              - { label: Facebook, name: facebook, widget: string, required: false }
+              - { label: LinkedIn, name: linkedin, widget: string, required: false }
+
+      - label: Grafica – i miei progetti
+        name: grafica
+        file: _data/grafica.yml
+        fields:
+          - label: Progetti
+            name: progetti
+            widget: list
+            fields:
+              - { label: Titolo, name: titolo, widget: string }
+              - { label: Descrizione, name: descrizione, widget: text, required: false }
+              - { label: Strumenti usati, name: strumenti, widget: string, required: false }
+              - { label: Immagine, name: immagine, widget: image, required: false }
+              - { label: Link, name: link, widget: string, required: false }
+
+      - label: Pagina "Chi sono"
+        name: chi-sono
+        file: chi-sono.md
+        fields:
+          - { label: Layout, name: layout, widget: hidden, default: page }
+          - { label: Titolo, name: title, widget: string }
+          - { label: Riga sopra il titolo, name: eyebrow, widget: string, required: false }
+          - { label: Sottotitolo, name: descrizione, widget: text, required: false }
+          - { label: In ricerca, name: in_search, widget: hidden, default: true }
+          - { label: Testo, name: body, widget: markdown }

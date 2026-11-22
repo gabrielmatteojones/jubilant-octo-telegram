@@ -1,0 +1,28 @@
+---
+layout: default
+title: Blog
+eyebrow: Articoli
+descrizione: Appunti su giochi, animazione, educazione, libri, film e grafica.
+in_search: true
+---
+{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=page.descrizione %}
+<section class="section">
+  <div class="wrap">
+    {% if site.posts.size > 0 %}
+    {% for p in site.posts %}
+    <a class="post-row" href="{{ p.url | relative_url }}">
+      <div class="card__media" style="--tint:{{ p.colore | default: '#bde0fe' }}">
+        {% if p.immagine and p.immagine != "" %}<img src="{{ p.immagine | relative_url }}" alt="" loading="lazy">{% else %}<span class="card__emoji" aria-hidden="true">{{ p.emoji | default: '✍️' }}</span>{% endif %}
+      </div>
+      <div>
+        <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%d/%m/%Y" }}</time>
+        <h3>{{ p.title }}</h3>
+        <p class="card__d">{{ p.descrizione | default: p.excerpt | strip_html | truncate: 180 }}</p>
+      </div>
+    </a>
+    {% endfor %}
+    {% else %}
+    <div class="empty">Nessun articolo ancora.</div>
+    {% endif %}
+  </div>
+</section>

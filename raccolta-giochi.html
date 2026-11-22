@@ -1,0 +1,55 @@
+---
+layout: default
+title: La Raccolta Giochi
+eyebrow: Servizio a pagamento
+descrizione: Una raccolta di giochi per animatori, educatori, psicologi e per chiunque lavori con gruppi.
+in_search: true
+---
+{% assign sv = site.data.settings.servizio %}
+{% if sv.checkout_url and sv.checkout_url != "" %}
+  {% assign buy = sv.checkout_url %}
+{% else %}
+  {% capture buy %}{{ '/contatti/' | relative_url }}?oggetto=raccolta{% endcapture %}
+{% endif %}
+
+{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=sv.slogan %}
+
+<section class="section">
+  <div class="wrap feature">
+    <div>
+      <div class="prose">{{ sv.descrizione | markdownify }}</div>
+      <h2 class="sec-title" style="margin:32px 0 18px">Per chi è</h2>
+      <ul class="checks">{% for x in sv.per_chi %}<li>{{ x }}</li>{% endfor %}</ul>
+    </div>
+    <div class="callout" style="margin:0">
+      <p class="tag" style="margin:0">{{ sv.nome }}</p>
+      <p class="price">
+        {% if sv.prezzo and sv.prezzo != "" %}{{ sv.prezzo }}{% else %}Prezzo in arrivo{% endif %}
+        <small>· accesso digitale</small>
+      </p>
+      <ul class="checks">{% for x in sv.include %}<li>{{ x }}</li>{% endfor %}</ul>
+      <a class="btn btn--accent" href="{{ buy }}">{% if sv.checkout_url and sv.checkout_url != "" %}Acquista ora{% else %}Richiedi la raccolta{% endif %}</a>
+    </div>
+  </div>
+</section>
+
+{% assign giochi = site.giochi %}
+{% if giochi.size > 0 %}
+<section class="section section--cream">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title">Assaggia qualche gioco</h2><a class="sec-more" href="{{ '/giochi/' | relative_url }}">Anteprima completa →</a></div>
+    <div class="grid grid--4">{% for g in giochi limit:4 %}{% include card.html item=g %}{% endfor %}</div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="sec-title" style="margin-bottom:12px">Domande frequenti</h2>
+    <div class="faq" style="max-width:780px">
+      {% for f in sv.faq %}
+      <details><summary>{{ f.domanda }}</summary><p>{{ f.risposta }}</p></details>
+      {% endfor %}
+    </div>
+  </div>
+</section>

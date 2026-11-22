@@ -1,0 +1,8 @@
+{% assign s = site.data.settings.social %}
+<ul class="social">
+  {% if s.instagram != "" and s.instagram %}<li><a href="{{ s.instagram }}" rel="me noopener" aria-label="Instagram">IG</a></li>{% endif %}
+  {% if s.youtube != "" and s.youtube %}<li><a href="{{ s.youtube }}" rel="me noopener" aria-label="YouTube">YT</a></li>{% endif %}
+  {% if s.tiktok != "" and s.tiktok %}<li><a href="{{ s.tiktok }}" rel="me noopener" aria-label="TikTok">TT</a></li>{% endif %}
+  {% if s.facebook != "" and s.facebook %}<li><a href="{{ s.facebook }}" rel="me noopener" aria-label="Facebook">FB</a></li>{% endif %}
+  {% if s.linkedin != "" and s.linkedin %}<li><a href="{{ s.linkedin }}" rel="me noopener" aria-label="LinkedIn">IN</a></li>{% endif %}
+</ul>

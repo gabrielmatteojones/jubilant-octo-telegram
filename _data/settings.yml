@@ -1,0 +1,40 @@
+nome: Gabriel Jones
+ruoli: Animatore · Educatore · Grafico
+email: ""
+
+hero:
+  eyebrow: Animatore · Studente di grafica · Futuro maestro
+  titolo: Il gioco è il modo più serio di imparare.
+  sottotitolo: Sono Gabriel Jones. Metto insieme giochi per animatori, educatori e psicologi, studio grafica e un giorno voglio diventare maestro.
+
+servizio:
+  nome: La Raccolta Giochi
+  slogan: Un archivio di giochi pronti da usare, per chi lavora con bambini e ragazzi.
+  prezzo: ""
+  # Incolla qui il link di pagamento (Stripe Payment Link, Gumroad, PayPal...). Se vuoto, il pulsante porta al modulo contatti.
+  checkout_url: ""
+  descrizione: |
+    Una raccolta di giochi a pagamento pensata per animatori, educatori, psicologi e per chiunque lavori con gruppi. Giochi chiari, adatti a età e contesti diversi, facili da proporre.
+  per_chi:
+    - Animatori di oratori, centri estivi e feste
+    - Educatori e operatori sociali
+    - Psicologi e professionisti che lavorano con gruppi
+    - Insegnanti e futuri maestri
+  include:
+    - Giochi organizzati per età e contesto
+    - Indicazioni su tempi, numero di partecipanti e materiali
+    - Aggiornamenti con nuovi giochi
+  faq:
+    - domanda: Come ricevo la raccolta dopo l'acquisto?
+      risposta: Dopo il pagamento ricevi l'accesso ai contenuti all'indirizzo email indicato.
+    - domanda: È adatta a chi è alle prime armi?
+      risposta: Sì. Ogni gioco è spiegato in modo semplice, con tempi e materiali necessari.
+    - domanda: Ho un dubbio prima di acquistare, a chi scrivo?
+      risposta: Scrivimi dalla pagina Contatti, rispondo appena posso.
+
+social:
+  instagram: ""
+  youtube: ""
+  tiktok: ""
+  facebook: ""
+  linkedin: ""

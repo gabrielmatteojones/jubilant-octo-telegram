@@ -1,0 +1,22 @@
+---
+layout: default
+title: Anteprima giochi
+eyebrow: La raccolta
+descrizione: Alcuni giochi della raccolta, per capire lo stile prima di acquistare.
+in_search: true
+---
+{% include pagehead.html eyebrow=page.eyebrow title=page.title sub=page.descrizione %}
+<section class="section">
+  <div class="wrap">
+    {% assign giochi = site.giochi | sort: "title" %}
+    {% if giochi.size > 0 %}
+    <div class="grid grid--4">{% for g in giochi %}{% include card.html item=g %}{% endfor %}</div>
+    {% else %}
+    <div class="empty">Nessun gioco ancora. Aggiungine dal pannello <a href="{{ '/admin/' | relative_url }}">/admin</a>.</div>
+    {% endif %}
+    <div class="callout" style="margin-top:56px;max-width:none">
+      <strong>Vuoi la raccolta completa?</strong> Tutti i giochi, organizzati per età e contesto.
+      <a class="btn btn--accent" href="{{ '/raccolta-giochi/' | relative_url }}">Scopri la raccolta</a>
+    </div>
+  </div>
+</section>

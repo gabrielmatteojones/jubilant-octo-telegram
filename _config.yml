@@ -1,0 +1,46 @@
+title: Gabriel Jones
+description: Animatore, studente di grafica, futuro maestro. Raccolta di giochi per animatori, educatori e psicologi.
+lang: it
+# Cambia con il tuo indirizzo Netlify o dominio personale
+url: "https://gabrieljones.netlify.app"
+baseurl: ""
+timezone: Europe/Rome
+markdown: kramdown
+permalink: /blog/:year/:month/:slug/
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+author:
+  name: Gabriel Jones
+
+collections:
+  giochi:
+    output: true
+    permalink: /giochi/:name/
+  libri:
+    output: true
+    permalink: /libri/:name/
+  film:
+    output: true
+    permalink: /film-serie/:name/
+
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post }
+  - scope: { path: "", type: giochi }
+    values: { layout: scheda, tipo: gioco, sezione: giochi }
+  - scope: { path: "", type: libri }
+    values: { layout: scheda, tipo: libro, sezione: libri }
+  - scope: { path: "", type: film }
+    values: { layout: scheda, tipo: film, sezione: film }
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - netlify.toml
+  - node_modules
+  - vendor

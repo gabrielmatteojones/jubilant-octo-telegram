@@ -1,0 +1,15 @@
+---
+layout: null
+---
+{%- assign statiche = site.pages | where: "in_search", true -%}
+{%- assign items = site.posts | concat: site.giochi | concat: site.libri | concat: site.film | concat: statiche -%}
+[
+{%- for p in items %}
+  {
+    "title": {{ p.title | jsonify }},
+    "url": {{ p.url | relative_url | jsonify }},
+    "type": {{ p.collection | default: "pagina" | jsonify }},
+    "text": {{ p.descrizione | default: p.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+]

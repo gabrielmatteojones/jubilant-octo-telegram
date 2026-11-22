@@ -1,0 +1,41 @@
+---
+layout: default
+---
+{% assign back = '/giochi/' %}
+{% assign backlabel = 'Tutti i giochi' %}
+{% if page.tipo == 'libro' %}{% assign back = '/libri/' %}{% assign backlabel = 'Tutti i libri' %}{% endif %}
+{% if page.tipo == 'film' %}{% assign back = '/film-serie/' %}{% assign backlabel = 'Tutti i film e le serie' %}{% endif %}
+
+{% include pagehead.html eyebrow=page.categoria title=page.title sub=page.descrizione %}
+<section class="section">
+  <div class="wrap scheda">
+    <aside class="scheda__side">
+      <div class="card__media card__media--big" style="--tint: {{ page.colore | default: '#ffd166' }}">
+        {% if page.immagine and page.immagine != "" %}
+          <img src="{{ page.immagine | relative_url }}" alt="">
+        {% else %}
+          <span class="card__emoji" aria-hidden="true">{{ page.emoji | default: '🎲' }}</span>
+        {% endif %}
+      </div>
+      <dl class="meta">
+        {% if page.eta %}<dt>Età</dt><dd>{{ page.eta }}</dd>{% endif %}
+        {% if page.durata %}<dt>Durata</dt><dd>{{ page.durata }}</dd>{% endif %}
+        {% if page.giocatori %}<dt>Partecipanti</dt><dd>{{ page.giocatori }}</dd>{% endif %}
+        {% if page.autore %}<dt>Autore</dt><dd>{{ page.autore }}</dd>{% endif %}
+        {% if page.regista %}<dt>Regia</dt><dd>{{ page.regista }}</dd>{% endif %}
+        {% if page.formato %}<dt>Formato</dt><dd>{{ page.formato }}</dd>{% endif %}
+        {% if page.anno %}<dt>Anno</dt><dd>{{ page.anno }}</dd>{% endif %}
+      </dl>
+    </aside>
+    <div class="prose">
+      {{ content }}
+      {% if page.tipo == 'gioco' %}
+      <div class="callout">
+        <strong>Questo è solo un assaggio.</strong> La raccolta completa contiene molti altri giochi.
+        <a class="btn btn--accent" href="{{ '/raccolta-giochi/' | relative_url }}">Scopri la raccolta</a>
+      </div>
+      {% endif %}
+      <p class="backlink"><a href="{{ back | relative_url }}">← {{ backlabel }}</a></p>
+    </div>
+  </div>
+</section>
