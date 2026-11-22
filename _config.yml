@@ -13,9 +13,9 @@ lang: it
 timezone: Europe/Rome
 
 # Se pubblichi su GitHub Pages in un repository di progetto (es. gj-on.github.io/bel)
-# lascia baseurl: "/bel" (senza slash finale). Per un dominio proprio usa baseurl: "".
+# lascia baseurl: "" (senza slash finale). Per un dominio proprio usa baseurl: "".
 url: "https://gj-on.github.io"
-baseurl: "/bel"
+baseurl: ""
 
 # Build settings
 markdown: kramdown
